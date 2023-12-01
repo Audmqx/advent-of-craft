@@ -1,0 +1,8 @@
+<!-- phpunit.xml -->
+<phpunit>
+    <testsuites>
+        <testsuite name="Exercise Suite : Day01">
+            <directory>src/test/php</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
