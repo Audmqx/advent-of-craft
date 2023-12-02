@@ -20,23 +20,23 @@ class Food {
             return false;
         }
 
-        if (!$this->isValidInspector()) {
+        if (!$this->isInspected()) {
             return false;
         }
 
-        if (!$this->isValidExpirationDate($now)) {
+        if (!$this->isExpired($now)) {
             return false;
         }
 
         return true;
     }
 
-    private function isValidInspector(): bool
+    private function isInspected(): bool
     {
         return $this->inspectorId instanceof UuidInterface ? true : false;
     }
 
-    private function isValidExpirationDate($now): bool
+    private function isExpired($now): bool
     {
         if(!$now instanceof Carbon) {
             return false;
