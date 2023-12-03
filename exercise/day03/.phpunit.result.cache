@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\PopulationTest::testWhoOwnsTheYoungestPet":7,"Tests\\PopulationTest::testFindYoungestPet":7},"times":{"Tests\\PopulationTest::testWhoOwnsTheYoungestPet":0.01,"Tests\\PopulationTest::testFindYoungestPet":0.037}}
