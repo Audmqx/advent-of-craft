@@ -8,6 +8,28 @@ use PHPUnit\Framework\TestCase;
 
 class FizzBuzzTest extends TestCase
 {
+
+    public static function divisibleBy3DataProvider(): array
+    {
+        return [
+            [3],
+            [66],
+            [99],
+        ];
+    }
+
+    /**
+     * @dataProvider divisibleBy3DataProvider
+     */
+    public function test_game_shuld_return_fizz(int $input): void
+    {
+        $this->assertEquals("Fizz", FizzBuzz::convert($input));
+    }
+
+    public function test_game_shuld_return_inputs(): void
+    {
+        $this->assertEquals("1", FizzBuzz::convert(1));
+    }
     public function testReturnsTheGivenNumberFor1(): void
     {
         $this->assertEquals("1", FizzBuzz::convert(1));
@@ -23,20 +45,6 @@ class FizzBuzzTest extends TestCase
         $this->assertEquals("82", FizzBuzz::convert(82));
     }
 
-    public function testReturnsFizzFor3(): void
-    {
-        $this->assertEquals("Fizz", FizzBuzz::convert(3));
-    }
-
-    public function testReturnsFizzFor66(): void
-    {
-        $this->assertEquals("Fizz", FizzBuzz::convert(66));
-    }
-
-    public function testReturnsFizzFor99(): void
-    {
-        $this->assertEquals("Fizz", FizzBuzz::convert(99));
-    }
 
     public function testReturnsBuzzFor5(): void
     {
