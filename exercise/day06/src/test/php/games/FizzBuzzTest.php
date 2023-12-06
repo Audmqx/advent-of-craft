@@ -76,23 +76,22 @@ class FizzBuzzTest extends TestCase
     {
         $this->assertEquals("FizzBuzz", FizzBuzz::convert($input));
     }
-    
 
-    public function testThrowsAnExceptionFor0(): void
+    public static function outOfRangeDataProvider(): array
     {
-        $this->expectException(OutOfRangeException::class);
-        FizzBuzz::convert(0);
+        return [
+            [0],
+            [101],
+            [-1],
+        ];
     }
 
-    public function testThrowsAnExceptionFor101(): void
+    /**
+     * @dataProvider outOfRangeDataProvider
+     */
+    public function test_game_shuld_return_an_exception(int $input): void
     {
         $this->expectException(OutOfRangeException::class);
-        FizzBuzz::convert(101);
-    }
-
-    public function testThrowsAnExceptionForMinus1(): void
-    {
-        $this->expectException(OutOfRangeException::class);
-        FizzBuzz::convert(-1);
+        FizzBuzz::convert($input);
     }
 }
