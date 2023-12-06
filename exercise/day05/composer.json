@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "People\\": "src/main/php/people"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    }
+}
