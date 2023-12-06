@@ -57,39 +57,26 @@ class FizzBuzzTest extends TestCase
      */
     public function test_game_shuld_return_inputs(int $input): void
     {
-        $this->assertEquals("Buzz", FizzBuzz::convert($input));
+        $this->assertEquals($input, FizzBuzz::convert($input));
     }
 
-    public function testReturnsTheGivenNumberFor1(): void
+    public static function divisibleByFiveAndThreeDataProvider(): array
     {
-        $this->assertEquals("1", FizzBuzz::convert(1));
+        return [
+            [15],
+            [30],
+            [45],
+        ];
     }
 
-    public function testReturnsTheGivenNumberFor67(): void
+    /**
+     * @dataProvider divisibleByFiveAndThreeDataProvider
+     */
+    public function test_game_shuld_return_FizzBuzz(int $input): void
     {
-        $this->assertEquals("67", FizzBuzz::convert(67));
+        $this->assertEquals("FizzBuzz", FizzBuzz::convert($input));
     }
-
-    public function testReturnsTheGivenNumberFor82(): void
-    {
-        $this->assertEquals("82", FizzBuzz::convert(82));
-    }
-
-
-    public function testReturnsFizzBuzzFor15(): void
-    {
-        $this->assertEquals("FizzBuzz", FizzBuzz::convert(15));
-    }
-
-    public function testReturnsFizzBuzzFor30(): void
-    {
-        $this->assertEquals("FizzBuzz", FizzBuzz::convert(30));
-    }
-
-    public function testReturnsFizzBuzzFor45(): void
-    {
-        $this->assertEquals("FizzBuzz", FizzBuzz::convert(45));
-    }
+    
 
     public function testThrowsAnExceptionFor0(): void
     {
