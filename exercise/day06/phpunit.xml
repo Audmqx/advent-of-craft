@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<testsuites>
+    <testsuite name="Day06">
+        <directory>src/test/php/games</directory>
+    </testsuite>
+</testsuites>
