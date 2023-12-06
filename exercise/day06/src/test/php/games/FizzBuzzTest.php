@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 class FizzBuzzTest extends TestCase
 {
 
-    public static function divisibleBy3DataProvider(): array
+    public static function divisibleByThreeDataProvider(): array
     {
         return [
             [3],
@@ -19,11 +19,28 @@ class FizzBuzzTest extends TestCase
     }
 
     /**
-     * @dataProvider divisibleBy3DataProvider
+     * @dataProvider divisibleByThreeDataProvider
      */
     public function test_game_shuld_return_fizz(int $input): void
     {
         $this->assertEquals("Fizz", FizzBuzz::convert($input));
+    }
+
+    public static function divisibleByFiveDataProvider(): array
+    {
+        return [
+            [5],
+            [50],
+            [85],
+        ];
+    }
+
+    /**
+     * @dataProvider divisibleByFiveDataProvider
+     */
+    public function test_game_shuld_return_buzz(int $input): void
+    {
+        $this->assertEquals("Buzz", FizzBuzz::convert($input));
     }
 
     public function test_game_shuld_return_inputs(): void
@@ -45,21 +62,6 @@ class FizzBuzzTest extends TestCase
         $this->assertEquals("82", FizzBuzz::convert(82));
     }
 
-
-    public function testReturnsBuzzFor5(): void
-    {
-        $this->assertEquals("Buzz", FizzBuzz::convert(5));
-    }
-
-    public function testReturnsBuzzFor50(): void
-    {
-        $this->assertEquals("Buzz", FizzBuzz::convert(50));
-    }
-
-    public function testReturnsBuzzFor85(): void
-    {
-        $this->assertEquals("Buzz", FizzBuzz::convert(85));
-    }
 
     public function testReturnsFizzBuzzFor15(): void
     {
