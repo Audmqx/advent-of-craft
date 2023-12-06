@@ -43,10 +43,23 @@ class FizzBuzzTest extends TestCase
         $this->assertEquals("Buzz", FizzBuzz::convert($input));
     }
 
-    public function test_game_shuld_return_inputs(): void
+    public static function notDivisibleByThreeOrFiveDataProvider(): array
     {
-        $this->assertEquals("1", FizzBuzz::convert(1));
+        return [
+            [1],
+            [67],
+            [82],
+        ];
     }
+
+    /**
+     * @dataProvider notDivisibleByThreeOrFiveDataProvider
+     */
+    public function test_game_shuld_return_inputs(int $input): void
+    {
+        $this->assertEquals("Buzz", FizzBuzz::convert($input));
+    }
+
     public function testReturnsTheGivenNumberFor1(): void
     {
         $this->assertEquals("1", FizzBuzz::convert(1));
