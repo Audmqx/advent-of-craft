@@ -72,4 +72,13 @@ class AuthenticationPasswordValidationTest extends TestCase
 
         $this->assertTrue($password->isHavingUnauthorizedSpecialCharacters());
     }
+
+    public function test_password_is_valid(): void
+    {
+        $input = "jesuisun5motdepA#se";
+
+        $password = new PasswordValidator($input);
+
+        $this->assertTrue($password->isValid());
+    }
 }
