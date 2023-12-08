@@ -22,4 +22,9 @@ class PasswordValidator
     {
         return preg_match('/[a-z]/', $this->password) > 0 ? true : false;
     }
+
+    public function isHavingNumber(): bool
+    {
+        return true;
+    }
 }
