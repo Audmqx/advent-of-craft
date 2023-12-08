@@ -19,6 +19,7 @@ use Main\PasswordValidator;
 
 class AuthenticationPasswordValidationTest extends TestCase
 {
+
     public function test_password_should_be_at_least_eight_characters(): void
     {
         $input = "jesuisunmotdepasse";

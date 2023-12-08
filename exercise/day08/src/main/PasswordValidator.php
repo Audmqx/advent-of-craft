@@ -58,4 +58,9 @@ class PasswordValidator
             str_split(implode(self::SPECIAL_CHARACTERS))
         );
     }
+
+    public function isValid(): bool
+    {
+        return true;
+    }
 }
