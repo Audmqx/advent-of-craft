@@ -15,6 +15,7 @@ class PasswordValidator
 
     public function isHavingCapitals()
     {
-        return true;
+        return preg_match('/[A-Z]/', $this->password) > 0 ? true : false;
+
     }
 }
