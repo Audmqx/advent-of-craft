@@ -36,4 +36,13 @@ class AuthenticationPasswordValidationTest extends TestCase
 
         $this->assertTrue($password->isHavingCapitals());
     }
+
+    public function test_password_should_have_at_least_one_lowercase_letter(): void
+    {
+        $input = "jesuisunmotdepAsse";
+
+        $password = new PasswordValidator($input);
+
+        $this->assertTrue($password->isHavinglowercase());
+    }
 }
