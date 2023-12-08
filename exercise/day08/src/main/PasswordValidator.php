@@ -8,14 +8,18 @@ class PasswordValidator
     public function __construct(private string $password){
     }
 
-    public function isLongEnough()
+    public function isLongEnough(): bool
     {
         return strlen($this->password) >= self::MINIMUM_LENGTH ? true : false;
     }
 
-    public function isHavingCapitals()
+    public function isHavingCapitals(): bool
     {
         return preg_match('/[A-Z]/', $this->password) > 0 ? true : false;
+    }
 
+    public function isHavinglowercase(): bool
+    {
+        return true;
     }
 }
