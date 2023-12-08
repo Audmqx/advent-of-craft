@@ -19,12 +19,21 @@ use Main\PasswordValidator;
 
 class AuthenticationPasswordValidationTest extends TestCase
 {
-    public function test_password_should_be_at_least_eight_characters()
+    public function test_password_should_be_at_least_eight_characters(): void
     {
         $input = "jesuisunmotdepasse";
 
         $password = new PasswordValidator($input);
 
         $this->assertTrue($password->isLongEnough());
+    }
+
+    public function test_password_should_have_at_least_one_capital_letter(): void
+    {
+        $input = "jesuisunmotdepAsse";
+
+        $password = new PasswordValidator($input);
+
+        $this->assertTrue(($password->isHavingCapitals()));
     }
 }
