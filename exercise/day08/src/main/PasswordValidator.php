@@ -5,6 +5,8 @@ namespace Main;
 class PasswordValidator
 {
     const MINIMUM_LENGTH = 8;
+    const SPECIAL_CHARACTERS = ['.', '*', '#', '@', '$', '%', '&'];
+
     public function __construct(private string $password){
     }
 
@@ -30,6 +32,8 @@ class PasswordValidator
 
     public function isAuthorizedSpecialCharacters(): bool
     {
-        return true;
+        $pattern = '/[' . preg_quote(implode(self::SPECIAL_CHARACTERS), '/') . ']/';
+
+        return preg_match($pattern, $this->password) > 0 ? true : false;
     }
 }
