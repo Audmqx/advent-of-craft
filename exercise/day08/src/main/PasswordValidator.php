@@ -30,7 +30,7 @@ class PasswordValidator
         return preg_match('/\d/', $this->password) > 0 ? true : false;
     }
 
-    public function isAuthorizedSpecialCharacters(): bool
+    public function isHavingAuthorizedSpecialCharacters(): bool
     {
         $pattern = '/[' . preg_quote(implode(self::SPECIAL_CHARACTERS), '/') . ']/';
 
