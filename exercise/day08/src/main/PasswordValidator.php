@@ -27,4 +27,9 @@ class PasswordValidator
     {
         return preg_match('/\d/', $this->password) > 0 ? true : false;
     }
+
+    public function isAuthorizedSpecialCharacters(): bool
+    {
+        return true;
+    }
 }
