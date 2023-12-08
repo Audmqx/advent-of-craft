@@ -13,6 +13,11 @@ class PasswordValidator
     public function __construct(private string $password){
     }
 
+    public function isValid(): bool
+    {
+        return $this->isLongEnough() && $this->isHavingCapitals() && $this->isHavinglowercase() && $this->isHavingAuthorizedSpecialCharacters() && !$this->isHavingUnauthorizedSpecialCharacters();
+    }
+
     public function isLongEnough(): bool
     {
         return strlen($this->password) >= self::MINIMUM_LENGTH;
@@ -57,10 +62,5 @@ class PasswordValidator
             str_split(self::NUMBERS),
             str_split(implode(self::SPECIAL_CHARACTERS))
         );
-    }
-
-    public function isValid(): bool
-    {
-        return true;
     }
 }

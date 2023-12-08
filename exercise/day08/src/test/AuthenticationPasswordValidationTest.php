@@ -76,10 +76,16 @@ class AuthenticationPasswordValidationTest extends TestCase
 
     public function test_password_is_valid(): void
     {
-        $input = "jesuisun5motdepA#se";
+        $validInput = "jesuisun5motdepA#se";
 
-        $password = new PasswordValidator($input);
+        $password = new PasswordValidator($validInput);
 
         $this->assertTrue($password->isValid());
+
+        $notValidInput = "jesuisaaaazze''((";
+
+        $password = new PasswordValidator($notValidInput);
+
+        $this->assertFalse($password->isValid());
     }
 }
