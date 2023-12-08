@@ -25,6 +25,6 @@ class PasswordValidator
 
     public function isHavingNumber(): bool
     {
-        return true;
+        return preg_match('/\d/', $this->password) > 0 ? true : false;
     }
 }
