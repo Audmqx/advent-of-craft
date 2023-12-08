@@ -5,6 +5,9 @@ namespace Main;
 class PasswordValidator
 {
     const MINIMUM_LENGTH = 8;
+    const CAPITALS = 'A-Z';
+    const LOWERCASES = 'a-z';
+    const NUMBERS = '\d';
     const SPECIAL_CHARACTERS = ['.', '*', '#', '@', '$', '%', '&'];
 
     public function __construct(private string $password){
@@ -12,29 +15,29 @@ class PasswordValidator
 
     public function isLongEnough(): bool
     {
-        return strlen($this->password) >= self::MINIMUM_LENGTH ? true : false;
+        return strlen($this->password) >= self::MINIMUM_LENGTH;
     }
 
     public function isHavingCapitals(): bool
     {
-        return preg_match('/[A-Z]/', $this->password) > 0 ? true : false;
+        return preg_match('/['.self::CAPITALS.']/', $this->password) > 0;
     }
 
     public function isHavinglowercase(): bool
     {
-        return preg_match('/[a-z]/', $this->password) > 0 ? true : false;
+        return preg_match('/['.self::LOWERCASES.']/', $this->password) > 0;
     }
 
     public function isHavingNumber(): bool
     {
-        return preg_match('/\d/', $this->password) > 0 ? true : false;
+        return preg_match('/'.self::NUMBERS.'/', $this->password) > 0;
     }
 
     public function isHavingAuthorizedSpecialCharacters(): bool
     {
         $pattern = '/[' . preg_quote(implode(self::SPECIAL_CHARACTERS), '/') . ']/';
 
-        return preg_match($pattern, $this->password) > 0 ? true : false;
+        return preg_match($pattern, $this->password) > 0;
     }
 
     public function isHavingUnauthorizedSpecialCharacters(): bool
@@ -48,15 +51,11 @@ class PasswordValidator
 
     private function buildAllowedCharactersPattern(): array
     {
-        $allowedCharacters[] = 'A-Z';
-
-        $allowedCharacters[] = 'a-z';
-
-        $allowedCharacters[] = '\d';
-
-        $allowedCharacters = array_merge($allowedCharacters, str_split(implode(self::SPECIAL_CHARACTERS)));
-
-        return $allowedCharacters;
+        return array_merge(
+            str_split(self::CAPITALS),
+            str_split(self::LOWERCASES),
+            str_split(self::NUMBERS),
+            str_split(implode(self::SPECIAL_CHARACTERS))
+        );
     }
-
 }

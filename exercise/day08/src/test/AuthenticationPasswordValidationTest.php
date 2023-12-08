@@ -66,7 +66,7 @@ class AuthenticationPasswordValidationTest extends TestCase
 
     public function test_password_should_not_have_unautorhized_special_character(): void
     {
-        $input = "jesuisun5motdepA#s((se";
+        $input = "jesuisun5motdepA#(se";
 
         $password = new PasswordValidator($input);
 
