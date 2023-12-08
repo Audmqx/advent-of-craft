@@ -34,6 +34,6 @@ class AuthenticationPasswordValidationTest extends TestCase
 
         $password = new PasswordValidator($input);
 
-        $this->assertTrue(($password->isHavingCapitals()));
+        $this->assertTrue($password->isHavingCapitals());
     }
 }

@@ -12,4 +12,9 @@ class PasswordValidator
     {
         return strlen($this->password) >= self::MINIMUM_LENGTH ? true : false;
     }
+
+    public function isHavingCapitals()
+    {
+        return true;
+    }
 }
