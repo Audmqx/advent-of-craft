@@ -1,6 +1,6 @@
 <?php
 
-
+use PHPUnit\Framework\TestCase;
 /**
     The password verification program will take a password as an argument and
     the password will be valid only if all these conditions are correct:
@@ -16,7 +16,14 @@
     Not why it is not.
  */
 
-class AuthenticationPasswordValidationTest
+class AuthenticationPasswordValidationTest extends TestCase
 {
+    public function test_password_should_be_at_least_eight_characters()
+    {
+        $input = "jesuisunmotdepasse";
 
+        $password = new PasswordValidator($input);
+
+        $this->assertTrue($password->isLongEnough());
+    }
 }
