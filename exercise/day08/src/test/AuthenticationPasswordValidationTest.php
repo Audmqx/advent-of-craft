@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use Main\PasswordValidator;
 /**
     The password verification program will take a password as an argument and
     the password will be valid only if all these conditions are correct:

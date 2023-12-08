@@ -1,1 +1,1 @@
-{"version":1,"defects":{"AuthenticationPasswordValidationTest::test_password_should_be_at_least_eight_characters":8},"times":{"AuthenticationPasswordValidationTest::test":0.007,"AuthenticationPasswordValidationTest::test_password_should_be_at_least_eight_characters":0.015}}
+{"version":1,"defects":{"AuthenticationPasswordValidationTest::test_password_should_be_at_least_eight_characters":8},"times":{"AuthenticationPasswordValidationTest::test":0.007,"AuthenticationPasswordValidationTest::test_password_should_be_at_least_eight_characters":0.006}}
