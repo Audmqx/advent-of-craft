@@ -54,4 +54,15 @@ class AuthenticationPasswordValidationTest extends TestCase
 
         $this->assertTrue($password->isHavingNumber());
     }
+
+    //Contains at least a special character in this list `. * # @ $ % &`.
+
+    public function test_password_should_have_at_least_an_autorhized_special_character(): void
+    {
+        $input = "jesuisun5motdepA#sse";
+
+        $password = new PasswordValidator($input);
+
+        $this->assertTrue($password->isAuthorizedSpecialCharacters());
+    }
 }
