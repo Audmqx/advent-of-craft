@@ -20,6 +20,6 @@ class PasswordValidator
 
     public function isHavinglowercase(): bool
     {
-        return true;
+        return preg_match('/[a-z]/', $this->password) > 0 ? true : false;
     }
 }
