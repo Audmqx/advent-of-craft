@@ -39,6 +39,24 @@ class PasswordValidator
 
     public function isHavingUnauthorizedSpecialCharacters(): bool
     {
-        return true;
+        $pattern = $this->buildAllowedCharactersPattern();
+
+        $inversePattern = '/[^' . (is_array($pattern) ? implode('', $pattern) : $pattern) . ']/';
+
+        return preg_match($inversePattern, $this->password) > 0;
     }
+
+    private function buildAllowedCharactersPattern(): array
+    {
+        $allowedCharacters[] = 'A-Z';
+
+        $allowedCharacters[] = 'a-z';
+
+        $allowedCharacters[] = '\d';
+
+        $allowedCharacters = array_merge($allowedCharacters, str_split(implode(self::SPECIAL_CHARACTERS)));
+
+        return $allowedCharacters;
+    }
+
 }
