@@ -36,4 +36,9 @@ class PasswordValidator
 
         return preg_match($pattern, $this->password) > 0 ? true : false;
     }
+
+    public function isHavingUnauthorizedSpecialCharacters(): bool
+    {
+        return true;
+    }
 }
