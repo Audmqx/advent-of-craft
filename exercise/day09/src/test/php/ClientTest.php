@@ -28,4 +28,21 @@ class ClientTest extends TestCase {
             $statement
         );
     }
+
+    public function test_client_total_amount_should_be_immuable_after_initialisation() {
+        $statement = $this->client->toStatement();
+        $statement = $this->client->toStatement();
+        $statement = $this->client->toStatement();
+        $statement = $this->client->toStatement();
+
+        $this->assertEquals(130.97, $this->client->getTotalAmount());
+        $this->assertEquals(
+            "Tenet Deluxe Edition for 45.99€" . PHP_EOL .
+            "Inception for 30.5€" . PHP_EOL .
+            "The Dark Knight for 30.5€" . PHP_EOL .
+            "Interstellar for 23.98€" . PHP_EOL .
+            "Total : 130.97€",
+            $statement
+        );
+    }
 }

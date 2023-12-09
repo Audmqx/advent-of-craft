@@ -1,1 +1,1 @@
-{"version":1,"defects":{"ClientTest::testClientShouldReturnStatement":7},"times":{"ClientTest::testClientShouldReturnStatement":0.019}}
+{"version":1,"defects":{"ClientTest::testClientShouldReturnStatement":5,"ClientTest::test_client_total_amount_should_be_immuable_after_initialisation":7},"times":{"ClientTest::testClientShouldReturnStatement":0.007,"ClientTest::test_client_total_amount_should_be_immuable_after_initialisation":0}}
