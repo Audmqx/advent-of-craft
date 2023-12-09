@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Account\\": "src/main/php/account"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    }
+}
