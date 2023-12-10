@@ -19,16 +19,12 @@ class FizzBuzz {
     }
 
     private function convertSafely(int $input): string {
-        if ($this->is($this::FIZZBUZZ, $input)) {
-            return "FizzBuzz";
-        }
-        if ($this->is($this::FIZZ, $input)) {
-            return "Fizz";
-        }
-        if ($this->is($this::BUZZ, $input)) {
-            return "Buzz";
-        }
-        return (string)$input;
+         return match (true) {
+             $this->is($this::FIZZBUZZ, $input) => "FizzBuzz",
+             $this->is($this::FIZZ, $input)  => "Fizz",
+             $this->is($this::BUZZ, $input)  => "Buzz",
+             default => $input,
+        };
     }
 
     private function is(int $divisor, int $input): bool {
