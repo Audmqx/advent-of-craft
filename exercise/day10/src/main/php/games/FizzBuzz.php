@@ -11,10 +11,10 @@ class FizzBuzz {
 
     public function __construct() {}
 
-    public function convert(int $input): string {
-        if ($this->isOutOfRange($input)) {
-            throw new OutOfRangeException();
-        }
+    public function convert(int $input): string
+    {
+        $this->throwExceptionIfIsOutOfRange($input);
+
         return $this->convertSafely($input);
     }
 
@@ -35,7 +35,8 @@ class FizzBuzz {
         return $input % $divisor === 0;
     }
 
-    private function isOutOfRange(int $input): bool {
-        return $input <= $this::MIN || $input > $this::MAX;
+    private function throwExceptionIfIsOutOfRange(int $input): bool|Exception
+    {
+        return $input <= $this::MIN || $input > $this::MAX ? throw new OutOfRangeException() : false;
     }
 }
