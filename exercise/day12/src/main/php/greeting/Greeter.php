@@ -2,7 +2,8 @@
 
 namespace Greeting;
 
-class Greeter {
+class Greeter implements Formality
+{
     private $formality;
 
     public function greet() {
@@ -10,18 +11,10 @@ class Greeter {
             return "Hello.";
         }
 
-        if ($this->formality === "formal") {
-            return "Good evening, sir.";
-        } elseif ($this->formality === "casual") {
-            return "Sup bro?";
-        } elseif ($this->formality === "intimate") {
-            return "Hello Darling!";
-        } else {
-            return "Hello.";
-        }
+        return $this->formality->greet();
     }
 
-    public function setFormality($formality) {
+    public function setFormality(Formality $formality) {
         $this->formality = $formality;
     }
 }

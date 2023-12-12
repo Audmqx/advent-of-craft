@@ -2,32 +2,36 @@
 
 use Greeting\Greeter;
 use PHPUnit\Framework\TestCase;
+use Greeting\Formal;
+use Greeting\Intimate;
+use Greeting\Casual;
 
 class GreeterTest extends TestCase {
-    public function testSaysHello() {
-        $greeter = new Greeter();
+    private $greeter;
 
-        $this->assertEquals("Hello.", $greeter->greet());
+    public function setUp(): void
+    {
+        $this->greeter = new Greeter();
+    }
+
+    public function testSaysHello() {
+        $this->assertEquals("Hello.", $this->greeter->greet());
     }
 
     public function testSaysHelloFormally() {
-        $greeter = new Greeter();
-        $greeter->setFormality("formal");
+        $this->greeter->setFormality(new Formal);
 
-        $this->assertEquals("Good evening, sir.", $greeter->greet());
+        $this->assertEquals("Good evening, sir.", $this->greeter->greet());
     }
 
     public function testSaysHelloCasually() {
-        $greeter = new Greeter();
-        $greeter->setFormality("casual");
-
-        $this->assertEquals("Sup bro?", $greeter->greet());
+        $this->greeter->setFormality(new Casual());
+        $this->assertEquals("Sup bro?", $this->greeter->greet());
     }
 
     public function testSaysHelloIntimately() {
-        $greeter = new Greeter();
-        $greeter->setFormality("intimate");
+        $this->greeter->setFormality(new Intimate());
 
-        $this->assertEquals("Hello Darling!", $greeter->greet());
+        $this->assertEquals("Hello Darling!", $this->greeter->greet());
     }
 }

@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"GreeterTest::testSaysHello":0.006,"GreeterTest::testSaysHelloFormally":0,"GreeterTest::testSaysHelloCasually":0,"GreeterTest::testSaysHelloIntimately":0}}
+{"version":1,"defects":{"GreeterTest::testSaysHelloFormally":8,"GreeterTest::testSaysHelloCasually":8,"GreeterTest::testSaysHelloIntimately":8},"times":{"GreeterTest::testSaysHello":0.006,"GreeterTest::testSaysHelloFormally":0.001,"GreeterTest::testSaysHelloCasually":0.001,"GreeterTest::testSaysHelloIntimately":0.001}}
