@@ -5,6 +5,7 @@ namespace Blog\Tests;
 use PHPUnit\Framework\TestCase;
 use Blog\Article;
 use Blog\CommentAlreadyExistException;
+use Carbon\Carbon;
 
 class ArticleTest extends TestCase
 {
@@ -27,8 +28,8 @@ class ArticleTest extends TestCase
         $this->assertCount(1, $this->article->getComments());
 
         $comment = $this->article->getComments()[0];
-        $this->assertEquals(self::COMMENT_TEXT, $comment->text());
-        $this->assertEquals(self::AUTHOR, $comment->author());
+        $this->assertEquals(self::COMMENT_TEXT, $comment->getText());
+        $this->assertEquals(self::AUTHOR, $comment->getAuthor());
     }
 
     public function testShouldAddCommentInAnArticleContainingAlreadyAComment(): void
@@ -42,8 +43,8 @@ class ArticleTest extends TestCase
         $this->assertCount(2, $this->article->getComments());
 
         $lastComment = end($this->article->getComments());
-        $this->assertEquals($newComment, $lastComment->text());
-        $this->assertEquals($newAuthor, $lastComment->author());
+        $this->assertEquals($newComment, $lastComment->getText());
+        $this->assertEquals($newAuthor, $lastComment->getAuthor());
     }
 
     /**
