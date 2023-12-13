@@ -6,12 +6,14 @@ use PHPUnit\Framework\TestCase;
 use Blog\Article;
 use Blog\CommentAlreadyExistException;
 use Carbon\Carbon;
+use Tests\CommentBuilder;
 
 class ArticleTest extends TestCase
 {
     public const AUTHOR = "Pablo Escobar";
     private const COMMENT_TEXT = "Amazing article !!!";
     private Article $article;
+    private CommentBuilder $commentBuilder;
 
     protected function setUp(): void
     {
@@ -19,26 +21,43 @@ class ArticleTest extends TestCase
             "Lorem Ipsum",
             "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
         );
+
+        $this->commentBuilder = new CommentBuilder();
     }
+
 
     public function testShouldAddCommentInAnArticle(): void
     {
-        $this->article->addComment(self::COMMENT_TEXT, self::AUTHOR);
+        $comment = $this->commentBuilder
+            ->withText(self::COMMENT_TEXT)
+            ->withAuthor(self::AUTHOR)
+            ->build();
+
+        $this->article->addComment($comment);
 
         $this->assertCount(1, $this->article->getComments());
 
-        $comment = $this->article->getComments()[0];
-        $this->assertEquals(self::COMMENT_TEXT, $comment->getText());
-        $this->assertEquals(self::AUTHOR, $comment->getAuthor());
+        $retrievedComment = $this->article->getComments()[0];
+        $this->assertEquals(self::COMMENT_TEXT, $retrievedComment->getText());
+        $this->assertEquals(self::AUTHOR, $retrievedComment->getAuthor());
     }
 
     public function testShouldAddCommentInAnArticleContainingAlreadyAComment(): void
     {
+        $firstComment = $this->commentBuilder
+            ->withText(self::COMMENT_TEXT)
+            ->withAuthor(self::AUTHOR)
+            ->build();
+
         $newComment = "Finibus Bonorum et Malorum";
         $newAuthor = "Al Capone";
+        $secondComment = $this->commentBuilder
+            ->withText($newComment)
+            ->withAuthor($newAuthor)
+            ->build();
 
-        $this->article->addComment(self::COMMENT_TEXT, self::AUTHOR);
-        $this->article->addComment($newComment, $newAuthor);
+        $this->article->addComment($firstComment);
+        $this->article->addComment($secondComment);
 
         $this->assertCount(2, $this->article->getComments());
 
@@ -52,10 +71,15 @@ class ArticleTest extends TestCase
      */
     public function addingAnExistingCommentShouldFail(): void
     {
-        $this->article->addComment(self::COMMENT_TEXT, self::AUTHOR);
+        $comment = $this->commentBuilder
+            ->withText(self::COMMENT_TEXT)
+            ->withAuthor(self::AUTHOR)
+            ->build();
+
+        $this->article->addComment($comment);
 
         $this->expectException(CommentAlreadyExistException::class);
 
-        $this->article->addComment(self::COMMENT_TEXT, self::AUTHOR);
+        $this->article->addComment($comment);
     }
 }

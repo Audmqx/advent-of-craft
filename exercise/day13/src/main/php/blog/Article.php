@@ -17,13 +17,11 @@ class Article
         $this->comments = [];
     }
 
-    private function addCommentPrivate(string $text, string $author, Carbon $creationDate): void
+    public function addComment(Comment $comment): void
     {
-        $newComment = new Comment($text, $author, $creationDate);
+        $this->verifyExistingComment($comment);
 
-        $this->verifyExistingComment($newComment);
-
-        $this->comments[] = $newComment;
+        $this->comments[] = $comment;
     }
 
     private function verifyExistingComment(Comment $comment)
@@ -38,10 +36,6 @@ class Article
         }
     }
 
-    public function addComment(string $text, string $author): void
-    {
-        $this->addCommentPrivate($text, $author, Carbon::now());
-    }
 
     public function getComments(): array
     {
