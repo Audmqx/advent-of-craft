@@ -3,6 +3,7 @@
 namespace Games;
 
 use Games\OutOfRangeException;
+use Utils\Maybe;
 
 class FizzBuzz {
     public const MIN = 0;
@@ -36,14 +37,16 @@ class FizzBuzz {
     }
 
     public static function convert(int $input): string {
-        if (self::isOutOfRange($input)) {
-            throw new OutOfRangeException();
-        }
-        return self::convertSafely($input);
+        $input = self::isOutOfRange($input) ? false : $input;
+        $mayBeInput = Maybe::just($input);
+
+        return $mayBeInput
+            ->map(fn($input) => self::convertSafely($input))
+            ->getOrElse("Input out of range");
     }
 
     private static function convertSafely(int $input): string {
-        self::initMapping();  // Assurez-vous que le mapping est initialisé avant utilisation
+        self::initMapping();
         foreach (self::$mapping as $predicate) {
             $result = $predicate($input);
             if ($result !== null) {

@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "Games\\": "src/main/php/games"
+            "Games\\": "src/main/php/games",
+            "Utils\\": "src/main/php/utils"
         }
     },
     "require-dev": {

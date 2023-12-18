@@ -44,7 +44,6 @@ class FizzBuzzTest extends TestCase {
      * @dataProvider invalidInputs
      */
     public function testThrowsExceptionForNumbersOutOfRange(int $input): void {
-        $this->expectException(OutOfRangeException::class);
-        FizzBuzz::convert($input);
+        $this->assertEquals('Input out of range', FizzBuzz::convert($input));
     }
 }
