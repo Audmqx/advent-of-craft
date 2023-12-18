@@ -1,50 +1,60 @@
 <?php
 
-namespace games;
+namespace Blog\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Games\FizzBuzz;
+use Blog\Article;
+use Blog\CommentAlreadyExistException;
 
-class FizzBuzzTest extends TestCase {
-    public static function validInputsDataProvider(): array {
-        return [
-            [1, '1'],
-            [67, '67'],
-            [82, '82'],
-            [3, 'Fizz'],
-            [66, 'Fizz'],
-            [99, 'Fizz'],
-            [5, 'Buzz'],
-            [50, 'Buzz'],
-            [85, 'Buzz'],
-            [15, 'FizzBuzz'],
-            [30, 'FizzBuzz'],
-            [45, 'FizzBuzz'],
-        ];
+class ArticleTest extends TestCase
+{
+    public const AUTHOR = "Pablo Escobar";
+    private const COMMENT_TEXT = "Amazing article !!!";
+    private Article $article;
+
+    protected function setUp(): void
+    {
+        $this->article = new Article(
+            "Lorem Ipsum",
+            "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
+        );
     }
 
-    public static function invalidInputsDataProvider(): array {
-        return [
-            [0],
-            [-1],
-            [101],
-        ];
+    public function testShouldAddCommentInAnArticle(): void
+    {
+        $this->article->addComment(self::COMMENT_TEXT, self::AUTHOR);
+
+        $this->assertCount(1, $this->article->getComments());
+
+        $comment = $this->article->getComments()[0];
+        $this->assertEquals(self::COMMENT_TEXT, $comment->text());
+        $this->assertEquals(self::AUTHOR, $comment->author());
+    }
+
+    public function testShouldAddCommentInAnArticleContainingAlreadyAComment(): void
+    {
+        $newComment = "Finibus Bonorum et Malorum";
+        $newAuthor = "Al Capone";
+
+        $this->article->addComment(self::COMMENT_TEXT, self::AUTHOR);
+        $this->article->addComment($newComment, $newAuthor);
+
+        $this->assertCount(2, $this->article->getComments());
+
+        $lastComment = end($this->article->getComments());
+        $this->assertEquals($newComment, $lastComment->text());
+        $this->assertEquals($newAuthor, $lastComment->author());
     }
 
     /**
-     * @dataProvider validInputsDataProvider
+     * @test
      */
-    public function testConvertReturnsNumberRepresentation(int $input, string $expectedResult): void {
-        $fizzBuzz = new FizzBuzz();
-        $this->assertSame($expectedResult, $fizzBuzz->convert($input));
-    }
+    public function addingAnExistingCommentShouldFail(): void
+    {
+        $this->article->addComment(self::COMMENT_TEXT, self::AUTHOR);
 
-    /**
-     * @dataProvider invalidInputsDataProvider
-     */
-    public function testConvertThrowsExceptionForNumbersOutOfRange(int $input): void {
-        $fizzBuzz = new FizzBuzz();
-        $this->expectException(OutOfRangeException::class);
-        $fizzBuzz->convert($input);
+        $this->expectException(CommentAlreadyExistException::class);
+
+        $this->article->addComment(self::COMMENT_TEXT, self::AUTHOR);
     }
 }
