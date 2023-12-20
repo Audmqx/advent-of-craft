@@ -1,0 +1,1 @@
+{"version":1,"defects":{"DocumentRecordTest::test_output_of_fromDocumentTypeAndRecordType":7,"DocumentRecordTest::testFromDocumentTypeAndRecordType":8},"times":{"DocumentRecordTest::test_that":0.006,"DocumentRecordTest::test_output_of_fromDocumentTypeAndRecordType":0.008,"DocumentRecordTest::testFromDocumentTypeAndRecordType":0.016}}
