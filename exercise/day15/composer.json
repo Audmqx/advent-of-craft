@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Document\\": "src/main/php/document"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "require": {
+        "nesbot/carbon": "^2.72"
+    }
+}
