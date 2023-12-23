@@ -18,7 +18,6 @@ class DocumentTemplateType {
     public static function fromDocumentTypeAndRecordType($documentType, $recordType) {
         $instance = new self('', RecordType::ALL());
 
-
         foreach ($instance->getTemplates() as $template) {
                 if (strcasecmp($template[0], $documentType) === 0
                     && ($template[1]->getValue() === $recordType->getValue() || $template[1]->getValue() === RecordType::ALL)) {

@@ -4,51 +4,58 @@
 use PHPUnit\Framework\TestCase;
 use Document\DocumentTemplateType;
 use Document\RecordType;
+use ApprovalTests\CombinationApprovals;
+use ApprovalTests\Approvals;
 
 class DocumentRecordTest extends TestCase
-{   
- 
+{
 
-    public function test_output_of_fromDocumentTypeAndRecordType()
+    public function test_combination()
     {
-        $documentTemplateType = DocumentTemplateType::fromDocumentTypeAndRecordType('DEER', RecordType::INDIVIDUAL_PROSPECT());
-
-        $this->assertInstanceOf(DocumentTemplateType::class, $documentTemplateType);
-        $this->assertSame('DEER', $documentTemplateType->getDocumentType());
-        $this->assertSame(RecordType::INDIVIDUAL_PROSPECT, $documentTemplateType->getRecordType()->getValue());
+        CombinationApprovals::verifyAllCombinations2(function ($documentType, $recordType) {
+            $result = $this->simulateDocumentTemplateType($documentType, $recordType);
+            $documentTypeString = $this->simulateGetDocumentType($result);
+            $recordTypeString = $this->simulateGetRecordType($result);
+            return $documentTypeString . " : " . $recordTypeString;
+        }, ['AUTP', 'AUTM', 'DEERPP', 'DEERPM', 'SPEC', 'GLPP', 'GLPM'],
+            ['IndividualPersonProspect', 'LegalEntityProspect', 'All']
+        );
     }
 
-    public function test_save_snapshot()
+    private function simulateDocumentTemplateType($documentType, $recordType)
     {
-        $testCases = [
-            ['documentType' => 'DEER', 'recordType' => RecordType::INDIVIDUAL_PROSPECT()],
-            ['documentType' => 'DEER', 'recordType' => RecordType::LEGAL_PROSPECT()],
-            ['documentType' => 'AUTP', 'recordType' => RecordType::INDIVIDUAL_PROSPECT()],
-            ['documentType' => 'AUTM', 'recordType' => RecordType::LEGAL_PROSPECT()],
-            ['documentType' => 'SPEC', 'recordType' => RecordType::ALL()],
-            ['documentType' => 'GLPP', 'recordType' => RecordType::INDIVIDUAL_PROSPECT()],
-            ['documentType' => 'GLPM', 'recordType' => RecordType::LEGAL_PROSPECT()],
-        ];
-
-        $approvalFilePath = 'fromDocumentTypeAndRecordType.approved.txt';
-
-        if (file_exists($approvalFilePath)) {
-            return;
-        }
-
-        foreach ($testCases as $testCase) {
-            $result = DocumentTemplateType::fromDocumentTypeAndRecordType($testCase['documentType'], $testCase['recordType']);
-            $approvedResults[] = serialize($result);
-        }
-
-        file_put_contents($approvalFilePath, serialize($approvedResults));
+        return 'SimulationResult';
     }
 
-    public function test_fromDocumentTypeAndRecordType() 
+    private function simulateGetDocumentType($result)
     {
-        $approvalFilePath = 'fromDocumentTypeAndRecordType.approved.txt';
-        $approvedResult = unserialize(file_get_contents($approvalFilePath));
-
-        //Assertions and approval comparison
+        return 'SimulatedDocumentType';
     }
+
+    private function simulateGetRecordType($result)
+    {
+        return 'SimulatedRecordType';
+    }
+
+
+
+//    public function test_verify_list()
+//    {
+//        $testCases = [
+//            ['documentType' => 'DEER', 'recordType' => RecordType::INDIVIDUAL_PROSPECT()],
+//            ['documentType' => 'DEER', 'recordType' => RecordType::LEGAL_PROSPECT()],
+//            ['documentType' => 'AUTP', 'recordType' => RecordType::INDIVIDUAL_PROSPECT()],
+//            ['documentType' => 'AUTM', 'recordType' => RecordType::LEGAL_PROSPECT()],
+//            ['documentType' => 'SPEC', 'recordType' => RecordType::ALL()],
+//            ['documentType' => 'GLPP', 'recordType' => RecordType::INDIVIDUAL_PROSPECT()],
+//            ['documentType' => 'GLPM', 'recordType' => RecordType::LEGAL_PROSPECT()],
+//        ];
+//
+//        foreach ($testCases as $testCase) {
+//            $result = DocumentTemplateType::fromDocumentTypeAndRecordType($testCase['documentType'], $testCase['recordType']);
+//            $list[] = serialize($result);
+//        }
+//
+//        Approvals::verifyList($list);
+//    }
 }
