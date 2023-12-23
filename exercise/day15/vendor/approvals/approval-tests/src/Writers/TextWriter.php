@@ -1,0 +1,42 @@
+<?php namespace ApprovalTests\Writers;
+
+use ApprovalTests\FileUtil;
+
+class TextWriter implements Writer
+{
+    private $received;
+    private $extensionWithoutDot;
+
+    public function __construct($received, $extensionWithoutDot)
+    {
+        $this->received = $received;
+        $this->extensionWithoutDot = $extensionWithoutDot;
+    }
+
+    public function getExtensionWithoutDot()
+    {
+        return $this->extensionWithoutDot;
+    }
+
+    /**
+     * Write the file to disk
+     */
+    public function write(string $fileNameAndPath, string $approvalsFolder)
+    {
+        FileUtil::createFolderIfNotExists($approvalsFolder);
+        file_put_contents($fileNameAndPath, $this->received);
+        return $fileNameAndPath;
+    }
+
+    public function writeEmpty(string $fileNameAndPath, string $approvalsFolder)
+    {
+        FileUtil::createFolderIfNotExists($approvalsFolder);
+        file_put_contents($fileNameAndPath, "  ");
+        return $fileNameAndPath;
+    }
+
+    public function delete(string $fileNameAndPath)
+    {
+        return unlink($fileNameAndPath);
+    }
+}
