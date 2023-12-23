@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "Blog\\": "src/main/php/blog"
+            "Blog\\": "src/main/php/blog",
+            "Test\\": "src/test/php/blog"
         }
     },
     "require-dev": {

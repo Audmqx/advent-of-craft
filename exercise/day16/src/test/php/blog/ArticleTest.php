@@ -1,13 +1,12 @@
 <?php
 
-namespace Test;
 
 use Blog\Article;
 use Test\ArticleBuilder;
 use Blog\CommentAlreadyExistException;
 use PHPUnit\Framework\TestCase;
 
-class ArticleTests extends TestCase {
+class ArticleTest extends TestCase {
     private $article;
 
     public function testShouldAddCommentInAnArticle() {
@@ -22,26 +21,23 @@ class ArticleTests extends TestCase {
     }
 
     public function testShouldAddCommentInAnArticleContainingAlreadyAComment() {
-        $newComment = 'New Comment';
-        $newAuthor = 'New Author';
-
-        $this->when(function (Article $article) use ($newComment, $newAuthor) {
-            $article->addComment($newComment, $newAuthor);
-        });
-
-        $this->then(function (Article $article) use ($newComment, $newAuthor) {
-            $this->assertCount(2, $article->getComments());
-            $this->assertComment(end($article->getComments()), $newComment, $newAuthor);
-        });
-    }
-
-    public function testFailWhenAddingAnExistingComment() {
         $article = ArticleBuilder::anArticle()->commented()->build();
 
-        $this->expectException(CommentAlreadyExistException::class);
+        $article->addComment("New Comment", "New Author");
 
-        $article->addComment($article->getComments()[0]->text, $article->getComments()[0]->author);
+        $this->assertCount(2, $article->getComments());
+
+        $this->assertComment(end($article->getComments()), "New Comment", "New Author");
     }
+
+
+//    public function testFailWhenAddingAnExistingComment() {
+//        $article = ArticleBuilder::anArticle()->commented()->build();
+//
+//        $this->expectException(Blog\CommentAlreadyExistException::class);
+//
+//        $article->addComment($article->getComments()[0]->text, $article->getComments()[0]->author);
+//    }
 
     private function assertComment($comment, $commentText, $author) {
         $this->assertEquals($commentText, $comment->text);

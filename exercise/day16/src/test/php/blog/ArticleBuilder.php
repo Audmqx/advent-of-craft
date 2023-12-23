@@ -3,6 +3,7 @@
 namespace Test;
 
 use Carbon\Carbon;
+use Blog\Article;
 
 class ArticleBuilder {
     public const AUTHOR = "Pablo Escobar";

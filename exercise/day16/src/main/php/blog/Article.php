@@ -5,29 +5,21 @@ namespace Blog;
 use Carbon\Carbon;
 
 class Article {
-    private $name;
-    private $content;
-    private $comments;
 
-    public function __construct($name, $content) {
-        $this->name = $name;
-        $this->content = $content;
-        $this->comments = [];
-    }
+    public function __construct(private $name,private $content,private $comments = [])
+    {}
 
-    private function addCommentSafely($text, $author, Carbon $creationDate) {
-        $comment = new Comment($text, $author, $creationDate);
-
-        if ($this->commentExists($comment)) {
+    public function withComment(Comment $newComment)
+    {
+        if ($this->commentExists($newComment)) {
             throw new CommentAlreadyExistException();
-        } else {
-            $this->comments[] = $comment;
         }
+
+        $this->comments[] = $newComment;
+
+        return new Article($this->name, $this->content, $this->comments);
     }
 
-    public function addComment($text, $author) {
-        $this->addCommentSafely($text, $author, Carbon::now());
-    }
 
     public function getComments() {
         return $this->comments;
@@ -42,5 +34,4 @@ class Article {
         return false;
     }
 }
-
 ?>
