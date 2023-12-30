@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"LinguisticAntiPatternTest::test":0.007}}
+{"version":1,"defects":{"LinguisticAntiPatternTest::test":7,"LinguisticAntiPatternTest::test_method_is_has_missing_return":7,"LinguisticAntiPatternTest::test_getter_has_missing_return":7},"times":{"LinguisticAntiPatternTest::test":0.016,"LinguisticAntiPatternTest::test_method_is_has_missing_return":0.006,"LinguisticAntiPatternTest::test_getter_has_missing_return":0}}
