@@ -41,11 +41,13 @@ class LinguisticAntiPatternDetector
         return true;
     }
 
-    public function validateConstantDoubleUnderscores(): bool
+    public function validateUnderscoresInConstantNames(): bool
     {
         foreach ($this->reflectionClass->getReflectionConstants() as $reflectionConstant) {
-            if (strpos($reflectionConstant->getName(), '__') !== false) {
-                echo "Validation échouée pour la constante {$reflectionConstant->getName()}\n";
+            $constantName = $reflectionConstant->getName();
+
+            if (strpos($constantName, '__') !== false || $constantName[0] === '_' || substr($constantName, -1) === '_') {
+                echo "Validation échouée pour la constante $constantName\n";
                 return false;
             }
         }
