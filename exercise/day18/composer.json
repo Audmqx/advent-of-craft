@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Lap\\": "src/main/php/lap"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    }
+}
