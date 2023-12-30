@@ -22,5 +22,11 @@ class LinguisticAntiPatternTest extends TestCase
         $this->assertFalse($this->LAPDetector->validateGetters());
     }
 
+    public function test_const_names_are_valids()
+    {
+        $this->assertFalse($this->LAPDetector->validateConstantDoubleUnderscores());
+        $this->assertFalse($this->LAPDetector->validateConstantDoubleUnderscores());
+    }
+
 }
 
