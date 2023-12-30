@@ -6,38 +6,34 @@ use ReflectionClass;
 
 class LinguisticAntiPatternDetector
 {
+    private $reflectionClass;
 
-    public function ensureIsMethodHasRightReturn($class): bool
+    public function __construct($class)
     {
-        $reflectionClass = new ReflectionClass($class);
-
-        foreach ($reflectionClass->getMethods() as $reflectionMethod) {
-            if (strpos($reflectionMethod->getName(), 'is') !== 0) {
-                continue;
-            }
-
-            $returnType = $reflectionMethod->getReturnType();
-
-            if ($returnType === null || $returnType->getName() !== 'bool') {
-                return false;
-            }
-        }
-
-        return true;
+        $this->reflectionClass = new ReflectionClass($class);
     }
 
-    public function areGettersReturningData($class): bool
+    public function validateIsMethod(): bool
     {
-        $reflectionClass = new ReflectionClass($class);
+        return $this->validateMethods('is', 'bool');
+    }
 
-        foreach ($reflectionClass->getMethods() as $reflectionMethod) {
-            if (strpos($reflectionMethod->getName(), 'get') !== 0) {
+    public function validateGetters(): bool
+    {
+        return $this->validateMethods('get', null);
+    }
+
+    private function validateMethods(string $prefix, $expectedReturnType): bool
+    {
+        foreach ($this->reflectionClass->getMethods() as $reflectionMethod) {
+            if (strpos($reflectionMethod->getName(), $prefix) !== 0) {
                 continue;
             }
 
             $returnType = $reflectionMethod->getReturnType();
 
-            if ($returnType === null) {
+            if ($returnType === null || $returnType->getName() !== $expectedReturnType) {
+                echo "Validation échouée pour la méthode {$reflectionMethod->getName()}\n";
                 return false;
             }
         }

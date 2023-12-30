@@ -9,19 +9,17 @@ class LinguisticAntiPatternTest extends TestCase
     private $LAPDetector;
     public function setUp(): void
     {
-        $this->LAPDetector = new LinguisticAntiPatternDetector();
+        $this->LAPDetector = new LinguisticAntiPatternDetector(new ShittyClass());
     }
 
     public function test_method_is_has_missing_return()
     {
-        $shittyClass = new ShittyClass();
-        $this->assertFalse($this->LAPDetector->ensureIsMethodHasRightReturn($shittyClass));
+        $this->assertFalse($this->LAPDetector->validateIsMethod());
     }
 
     public function test_getter_has_missing_return()
     {
-        $shittyClass = new ShittyClass();
-        $this->assertFalse($this->LAPDetector->areGettersReturningData($shittyClass));
+        $this->assertFalse($this->LAPDetector->validateGetters());
     }
 
 }
