@@ -3,6 +3,7 @@
 namespace Test;
 
 use Blog\Article;
+use Innmind\Immutable\Either;
 
 
 class ArticleBuilder
@@ -31,7 +32,7 @@ class ArticleBuilder
         return $this;
     }
 
-    public function build(): Article
+    public function build(): Article|Either
     {
         $article = new Article('', ''); // Remplacez les chaînes vides par des valeurs par défaut si nécessaire
 

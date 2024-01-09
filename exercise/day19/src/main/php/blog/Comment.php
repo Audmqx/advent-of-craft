@@ -16,7 +16,6 @@ class Comment
     public function equals(Comment $other): bool
     {
         return $this->text === $other->text
-            && $this->author === $other->author
-            && $this->creationDate == $other->creationDate;
+            && $this->author === $other->author;
     }
 }

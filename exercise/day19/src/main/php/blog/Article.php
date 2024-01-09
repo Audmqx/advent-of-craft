@@ -3,6 +3,7 @@
 namespace Blog;
 
 use DateTimeImmutable;
+use Innmind\Immutable\Either;
 
 class Article
 {
@@ -13,24 +14,23 @@ class Article
     ) {
     }
 
-    private function addSafeComment(string $text, string $author, DateTimeImmutable $creationDate): Article
+    private function addSafeComment(string $text, string $author, DateTimeImmutable $creationDate): Either
     {
         $comment = new Comment($text, $author, $creationDate);
 
-
         foreach ($this->comments as $existingComment) {
             if ($existingComment->equals($comment)) {
-                throw new CommentAlreadyExistException();
+                return Either::left(new InvalidComment('existing comment'));
             }
         }
 
         $newComments = $this->comments;
         $newComments[] = $comment;
 
-        return new Article($this->name, $this->content, $newComments);
+        return Either::right(new Article($this->name, $this->content, $newComments));
     }
 
-    public function addComment(string $text, string $author): Article
+    public function addComment(string $text, string $author): Either
     {
         return $this->addSafeComment($text, $author, new DateTimeImmutable());
     }
