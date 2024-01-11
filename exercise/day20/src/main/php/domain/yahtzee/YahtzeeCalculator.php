@@ -8,9 +8,17 @@ use function iter\all;
 use function iter\mkString;
 use function iter\range;
 use function iter\zip;
+use Domain\Yahtzee\YahtzeeRollValidator;
 
 class YahtzeeCalculator
-{
+{   
+    private YahtzeeRollValidator $rollValidator;
+
+    public function __construct(YahtzeeRollValidator $rollValidator)
+    {
+        $this->rollValidator = $rollValidator;
+    }
+
     public function number(array $dice, int $number): int
     {
         return $this->calculate(
@@ -116,7 +124,10 @@ class YahtzeeCalculator
 
     private function calculate(callable $compute, array $dice): int
     {
-        $this->validateRoll($dice);
+        if($error = $this->rollValidator->validateRoll($dice)){
+            return $error;
+        };
+
         return $compute($dice);
     }
 }
