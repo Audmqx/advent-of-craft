@@ -11,36 +11,6 @@ use function iter\zip;
 
 class YahtzeeCalculator
 {
-    private const ROLL_LENGTH = 5;
-    private const MINIMUM_DIE = 1;
-    private const MAXIMUM_DIE = 6;
-
-    private function validateRoll(array $dice): void
-    {
-        if ($this->hasInvalidLength($dice)) {
-            throw new \InvalidArgumentException("Invalid dice... A roll should contain 6 dice.");
-        }
-
-        if ($this->containsInvalidDie($dice)) {
-            throw new \InvalidArgumentException("Invalid die value. Each die must be between 1 and 6.");
-        }
-    }
-
-    private function hasInvalidLength(array $dice): bool
-    {
-        return $dice === null || count($dice) !== self::ROLL_LENGTH;
-    }
-
-    private function containsInvalidDie(array $dice): bool
-    {
-        return all($dice, fn($die) => $this->isValidDie($die));
-    }
-
-    private function isValidDie(int $die): bool
-    {
-        return $die < self::MINIMUM_DIE || $die > self::MAXIMUM_DIE;
-    }
-
     public function number(array $dice, int $number): int
     {
         return $this->calculate(
