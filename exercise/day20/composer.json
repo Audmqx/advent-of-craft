@@ -1,4 +1,9 @@
 {
+    "autoload": {
+        "psr-4": {
+            "Domain\\": "src/main/php/domain"
+        }
+    },
     "require-dev": {
         "phpunit/phpunit": "^10.5"
     }
