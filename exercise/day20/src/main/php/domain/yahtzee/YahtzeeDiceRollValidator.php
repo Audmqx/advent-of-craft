@@ -2,28 +2,26 @@
 
 namespace Domain\Yahtzee;
 
-class YahtzeeRollValidator
+use Innmind\Immutable\Either;
+use stdClass;
+
+class YahtzeeDiceRollValidator
 {
     private const ROLL_LENGTH = 5;
     private const MINIMUM_DIE = 1;
     private const MAXIMUM_DIE = 6;
 
-    public function __construct(private array $dice)
-    {
-        $this->validateRoll($dice);
-    }
-
-    public function validateRoll(array $dice): string|bool
+    public function validateRoll(array $dice): Either
     {
         if ($this->hasInvalidLength($dice)) {
-            return "Invalid dice... A roll should contain 5 dice.";
+            return Either::left("Invalid dice... A roll should contain 5 dice.");
         }
 
         if ($this->containsInvalidDie($dice)) {
-            return "Invalid die value. Each die must be between 1 and 6.";
+            return Either::left("Invalid die value. Each die must be between 1 and 6.");
         }
 
-        return false; 
+        return Either::right(true); 
     }
 
     private function hasInvalidLength(array $dice): bool
