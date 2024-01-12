@@ -2,13 +2,6 @@
 
 namespace Domain\Yahtzee;
 
-use function Functional\group;
-use function Functional\sum;
-use function iter\all;
-use function iter\mkString;
-use function iter\range;
-use function iter\zip;
-
 class YahtzeeRollValidator
 {
     private const ROLL_LENGTH = 5;
@@ -40,7 +33,13 @@ class YahtzeeRollValidator
 
     private function containsInvalidDie(array $dice): bool
     {
-        return all($dice, fn($die) => $this->isValidDie($die));
+        foreach ($dice as $die) {
+            if (!$this->isValidDie($die)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private function isValidDie(int $die): bool
