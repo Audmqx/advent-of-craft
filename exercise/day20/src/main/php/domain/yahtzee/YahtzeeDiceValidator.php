@@ -15,6 +15,11 @@ class YahtzeeRollValidator
     private const MINIMUM_DIE = 1;
     private const MAXIMUM_DIE = 6;
 
+    public function __construct(private array $dice)
+    {
+        $this->validateRoll($dice);
+    }
+
     public function validateRoll(array $dice): string|bool
     {
         if ($this->hasInvalidLength($dice)) {
