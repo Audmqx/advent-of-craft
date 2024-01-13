@@ -3,6 +3,7 @@
 namespace Audit;
 
 use Carbon\Carbon;
+use Audit\FileSystem;
 
 class AuditManager {
     private int $maxEntriesPerFile;

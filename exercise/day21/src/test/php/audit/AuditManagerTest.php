@@ -3,19 +3,18 @@
 use Audit\AuditManager;
 use Audit\FileSystem;
 use Carbon\Carbon;
-use Mockery;
 
 test('adds new visitor to a new file when end of last file is reached', function () {
     $fileSystemMock = Mockery::mock(FileSystem::class);
 
-    // Définition des comportements du mock
     $fileSystemMock->shouldReceive('getFiles')
         ->with('audits')
         ->andReturn([
             'audits/audit_2.txt',
             'audits/audit_1.txt',
         ]);
-
+        
+    
     $fileSystemMock->shouldReceive('readAllLines')
         ->with('audits/audit_2.txt')
         ->andReturn([
@@ -24,14 +23,11 @@ test('adds new visitor to a new file when end of last file is reached', function
             'Jack;2019-04-06 17:00:00',
         ]);
 
-    // Création de l'instance de AuditManager avec le mock
-    $sut = new AuditManager(3, 'audits', $fileSystemMock);
-
-    // Appel de la méthode à tester avec Carbon
-    $sut->addRecord('Alice', Carbon::createFromFormat('Y-m-d H:i:s', '2019-04-06 18:00:00'));
-
-    // Vérification que la méthode writeAllText du FileSystem a bien été appelée avec les arguments attendus
     $fileSystemMock->shouldReceive('writeAllText')
-        ->with('audits/audit_3.txt', 'Alice;2019-04-06 18:00:00')
-        ->once();
+    ->with('audits/audit_3.txt', 'Alice;2019-04-06 18:00:00')
+    ->once();
+
+    $sut = new AuditManager(3,'audits', $fileSystemMock);
+
+    $sut->addRecord('Alice', Carbon::createFromFormat('Y-m-d H:i:s', '2019-04-06 18:00:00'));
 });
