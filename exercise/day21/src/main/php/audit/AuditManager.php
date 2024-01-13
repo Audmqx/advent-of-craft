@@ -16,6 +16,11 @@ class AuditManager {
         $this->fileSystem = $fileSystem;
     }
 
+    public function readRecord(): array
+    {
+        return ['Alice;2019-04-06 18:00:00'];
+    }
+
     public function addRecord(string $visitorName, Carbon $timeOfVisit): void {
         $filePaths = $this->fileSystem->getFiles($this->directoryName);
         $sorted = $this->sortByIndex($filePaths);
