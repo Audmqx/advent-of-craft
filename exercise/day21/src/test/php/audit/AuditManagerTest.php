@@ -4,7 +4,8 @@ use Audit\AuditManager;
 use Audit\FileSystem;
 use Carbon\Carbon;
 
-test('adds new visitor to a new file when end of last file is reached', function () {
+test('Audit should add a new visitor to a new file when end of last file is reached', function () {
+    // Arrange
     $fileSystemMock = Mockery::mock(FileSystem::class);
 
     $fileSystemMock->shouldReceive('getFiles')
@@ -14,7 +15,6 @@ test('adds new visitor to a new file when end of last file is reached', function
             'audits/audit_1.txt',
         ]);
         
-    
     $fileSystemMock->shouldReceive('readAllLines')
         ->with('audits/audit_2.txt')
         ->andReturn([
@@ -26,8 +26,12 @@ test('adds new visitor to a new file when end of last file is reached', function
     $fileSystemMock->shouldReceive('writeAllText')
     ->with('audits/audit_3.txt', 'Alice;2019-04-06 18:00:00')
     ->once();
+    
+    // Act
+    $sut = new AuditManager(3, 'audits', $fileSystemMock);
+    $newRecord = $sut->addRecord('Alice', Carbon::createFromFormat('Y-m-d H:i:s', '2019-04-06 18:00:00'));
 
-    $sut = new AuditManager(3,'audits', $fileSystemMock);
-
-    $sut->addRecord('Alice', Carbon::createFromFormat('Y-m-d H:i:s', '2019-04-06 18:00:00'));
+    // Assert
+    expect($sut->readRecord('audits/audit_3.txt'))
+        ->toBe('Alice;2019-04-06 18:00:00');
 });
