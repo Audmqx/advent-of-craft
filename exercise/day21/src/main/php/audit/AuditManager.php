@@ -6,6 +6,9 @@ use Carbon\Carbon;
 use Audit\FileSystem;
 
 class AuditManager {
+    const NEW_FILE = 'New file created';
+    const FILE_UPDATED = 'File updated';
+
     private int $maxEntriesPerFile;
     private string $directoryName;
     private FileSystem $fileSystem;
@@ -16,36 +19,80 @@ class AuditManager {
         $this->fileSystem = $fileSystem;
     }
 
-    public function readRecord(): array
-    {
-        return ['Alice;2019-04-06 18:00:00'];
+    public function addRecord(string $visitorName, Carbon $timeOfVisit): array {
+        $filePaths = $this->readDirectory();
+        $sortedFiles = $this->sortByIndex($filePaths);
+        $newRecord = $this->prepareNewVisitorRecord($visitorName, $timeOfVisit);
+
+        if ($this->filesDoesntExists($sortedFiles)) {
+            $newFile = $this->createNewfile("audit_1.txt");
+            $this->writeRecords($newFile, $newRecord);
+            return $this->generateAuditReportForRecord(self::NEW_FILE, $newFile, $newRecord);
+        }
+
+        $currentFileIndex = count($sortedFiles) - 1;
+        $currentFilePath = $sortedFiles[$currentFileIndex];
+        $lines = $this->readFile($currentFilePath);
+       
+        if ($this->fileCanAccommodateNewEntry($lines)) {
+            $records = $this->formatRecordsForWriting($lines, $newRecord);
+            $this->writeRecords($currentFilePath, $records);
+            return $this->generateAuditReportForRecord(self::FILE_UPDATED, $currentFilePath, $records);
+        } 
+
+        $newFileName = "audit_" . ($currentFileIndex + 2) . ".txt";
+        $this->writeRecords($this->createNewfile($newFileName), $newRecord);
+        return $this->generateAuditReportForRecord(self::NEW_FILE, $newFileName, $newRecord);
     }
 
-    public function addRecord(string $visitorName, Carbon $timeOfVisit): void {
-        $filePaths = $this->fileSystem->getFiles($this->directoryName);
-        $sorted = $this->sortByIndex($filePaths);
-        $dateTimeFormatter = "Y-m-d H:i:s";
-        $newRecord = $visitorName . ";" . $timeOfVisit->format($dateTimeFormatter);
+    public function readFile(string $filePath): array
+    {
+        return $this->fileSystem->readAllLines($filePath);
+    }
 
-        if (count($sorted) === 0) {
-            $newFile = $this->directoryName . "/audit_1.txt";
-            $this->fileSystem->writeAllText($newFile, $newRecord);
-            return;
-        }
+    public function generateAuditReportForRecord(string $operation, string $file, string $content): array
+    {
+        return [
+            'operation' => $operation,
+            'file' => $file,
+            'content' => $content
+        ];
+    }
 
-        $currentFileIndex = count($sorted) - 1;
-        $currentFilePath = $sorted[$currentFileIndex];
-        $lines = $this->fileSystem->readAllLines($currentFilePath);
+    private function readDirectory(): array
+    {
+        return $this->fileSystem->getFiles($this->directoryName);
+    }
 
-        if (count($lines) < $this->maxEntriesPerFile) {
-            $lines[] = $newRecord;
-            $newContent = implode(PHP_EOL, $lines);
-            $this->fileSystem->writeAllText($currentFilePath, $newContent);
-        } else {
-            $newName = "audit_" . ($currentFileIndex + 2) . ".txt";
-            $newFile = $this->directoryName . "/" . $newName;
-            $this->fileSystem->writeAllText($newFile, $newRecord);
-        }
+    private function prepareNewVisitorRecord(string $visitorName, Carbon $timeOfVisit): string
+    {
+        return  $visitorName . ";" . $timeOfVisit->format("Y-m-d H:i:s");
+    }
+
+    private function filesDoesntExists(array $files): bool
+    {
+        return count($files) === 0;
+    }
+
+    private function writeRecords(string $file, string $content)
+    {
+        $this->fileSystem->writeAllText($file, $content);
+    }
+
+    private function createNewfile(string $fileName): string
+    {
+        return $this->directoryName . "/" . $fileName;
+    }
+
+    private function fileCanAccommodateNewEntry(array $lines): string
+    {
+        return count($lines) < $this->maxEntriesPerFile;
+    }
+
+    private function formatRecordsForWriting(array $lines, string $newLine): string
+    {
+        $lines[] = $newLine;
+        return implode(PHP_EOL, $lines);
     }
 
     private function sortByIndex(array $filePaths): array {

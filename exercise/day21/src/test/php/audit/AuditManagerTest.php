@@ -29,9 +29,11 @@ test('Audit should add a new visitor to a new file when end of last file is reac
     
     // Act
     $sut = new AuditManager(3, 'audits', $fileSystemMock);
-    $sut->addRecord('Alice', Carbon::createFromFormat('Y-m-d H:i:s', '2019-04-06 18:00:00'));
+    $report = $sut->addRecord('Alice', Carbon::createFromFormat('Y-m-d H:i:s', '2019-04-06 18:00:00'));
 
     // Assert
-    expect($sut->readRecord('audits/audit_3.txt'))
-        ->toBe(['Alice;2019-04-06 18:00:00']);
+    expect($report)
+        ->toHaveKey('operation', 'New file created' )
+        ->toHaveKey('file', 'audit_3.txt')
+        ->toHaveKey('content', 'Alice;2019-04-06 18:00:00');
 });
