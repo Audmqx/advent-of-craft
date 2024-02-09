@@ -4,7 +4,7 @@ namespace Test;
 
 use PHPUnit\Framework\TestCase;
 
-class Test extends TestCase
+class DiamondTest extends TestCase
 {
     public function test()
     {
