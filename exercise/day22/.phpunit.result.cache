@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Test\\Test::test":7,"Test\\DiamondTest::test":7},"times":{"Test\\Test::test":0.011,"Test\\DiamondTest::test":0.005}}
+{"version":1,"defects":{"Test\\Test::test":7,"Test\\DiamondTest::test":7},"times":{"Test\\Test::test":0.011,"Test\\DiamondTest::test":0.006}}
