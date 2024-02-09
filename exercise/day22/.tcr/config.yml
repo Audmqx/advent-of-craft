@@ -5,5 +5,5 @@ config:
   mob-timer:
     duration: 5m0s
   tcr:
-    language: java
-    toolchain: maven
+    language: php
+    toolchain: phpunit
