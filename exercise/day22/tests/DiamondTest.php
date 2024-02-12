@@ -21,6 +21,7 @@ class DiamondTest extends TestCase
     {
         //ARRANGE
         $diamond = new Diamond;
+
         //ACT
 
         //ASSERT
