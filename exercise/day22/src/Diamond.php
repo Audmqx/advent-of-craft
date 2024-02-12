@@ -23,7 +23,7 @@ class Diamond
     public function upperSide(): array
     {
         $upperArray = [];
-        for ($i=0; $i < $this->depth(); $i++) { 
+        for ($i=0; $i < $this->positionInTheAlphabet(); $i++) { 
             array_push($upperArray, $this->addLineToDiamond($this->alphabet()[$i]));
         }
    
@@ -43,12 +43,12 @@ class Diamond
         return $character.$blanks.$character;
     }
 
-    public function depth(): int
+    public function positionInTheAlphabet(): int
     {
         $position = array_search($this->initialCharacter, $this->alphabet());
 
         if ($position !== false) {
-           return $position + 1; // additional is because array starts at 0
+           return $position; 
         }
     }
 
