@@ -45,9 +45,11 @@ class Diamond
 
     public function depth(): int
     {
-        var_dump($this->initialCharacter);
-        var_dump($this->alphabet()[$this->initialCharacter]);
-        return $this->alphabet()[$this->initialCharacter] + 1; // additional is because array starts at 0
+        $position = array_search($this->initialCharacter, $this->alphabet());
+
+        if ($position !== false) {
+           return $position + 1; // additional is because array starts at 0
+        }
     }
 
     public function spacesBetweenChars()
