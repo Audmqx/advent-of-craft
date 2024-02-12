@@ -5,7 +5,7 @@ Namespace App;
 class Diamond
 {
 
-    public function __construct(private string $shape)
+    public function __construct(private string $initialCharacter)
     {
         
     }
@@ -20,12 +20,9 @@ class Diamond
     public function upperSide():array
     {
         $upperArray = [];
-        var_dump("begin");
         for ($i=0; $i < $this->depth(); $i++) { 
-            var_dump($i);
             array_push($upperArray, $this->alphabet()[$i]);
         }
-        var_dump("end");
         return $upperArray;
     }
 
@@ -44,12 +41,12 @@ class Diamond
 
     public function depth(): int
     {
-        return $this->alphabet()[$this->shape] + 1; // additional is because array starts at 0
+        return $this->alphabet()[$this->initialCharacter] + 1; // additional is because array starts at 0
     }
 
     public function spacesBetweenChars(): int
     {
-        return $this->alphabet()[$this->shape];
+        return $this->alphabet()[$this->initialCharacter];
     }
 
     private function alphabet(): array
