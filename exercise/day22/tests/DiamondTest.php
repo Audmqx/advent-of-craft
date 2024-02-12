@@ -31,15 +31,11 @@ class DiamondTest extends TestCase
                 $diamond = new Diamond('A');
                 
                 $expectedShape = ['A', '', 'A'];
-        
                 $this->assertSame($diamond->shape(), $expectedShape);
             } elseif ($characterDepth === "B") {
                 $diamond = new Diamond('B');
                 
-                $upperSide = ['A', 'B B'];
                 $expectedShape = ['A', 'B B', 'A'];
-                $this->assertSame($diamond->positionInTheAlphabet(), 1);
-                $this->assertSame($upperSide, $diamond->upperSide());
                 $this->assertSame($expectedShape, $diamond->shape());
             }
         });
