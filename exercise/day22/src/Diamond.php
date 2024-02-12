@@ -12,16 +12,18 @@ class Diamond
 
     public function shape():array
     {
-        // particular case as between the shapes there is no space
-        if( $this->depth(1) ){
-            
-        }
+       
         return ['A','','A'];
     }
 
     public function depth(): int
     {
         return $this->alphabet()[$this->shape] + 1; // additional is because array starts at 0
+    }
+
+    public function spacesBetweenChars(): int
+    {
+        return $this->alphabet()[$this->shape];
     }
 
     private function alphabet(): array
