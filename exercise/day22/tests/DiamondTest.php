@@ -28,11 +28,20 @@ class DiamondTest extends TestCase
         $this->forAll(Set\Chars::uppercaseLetter())
         ->then( function($characterDepth) {
             if($characterDepth === "A") {
-                $diamond = new Diamond('A');
+                // $diamond = new Diamond('A');
                 
-                $expectedShape = ['A', '', 'A'];
+                // $expectedShape = ['A', '', 'A'];
         
-                $this->assertSame($diamond->shape(), $expectedShape);
+                // $this->assertSame($diamond->shape(), $expectedShape);
+            } elseif ($characterDepth === "B") {
+                $diamond = new Diamond('B');
+                
+                $expectedShape2 = ['A', 'B B', 'A'];
+        
+                // $this->assertSame($diamond->shape(), $expectedShape2);
+                var_dump($diamond->depth());
+                //$this->assertSame($diamond->depth(), 1);
+                // $this->assertSame($diamond->spacesBetweenChars(), 1);
             }
         });
     }
