@@ -39,7 +39,7 @@ class DiamondTest extends TestCase
                 $expectedShape = ['A', 'B B', 'A'];
         
                 $this->assertSame($diamond->positionInTheAlphabet(), 1);
-                //$this->assertSame($diamond->shape(), $expectedShape);
+                // $this->assertSame($expectedShape, $diamond->shape());
             }
         });
     }
