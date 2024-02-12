@@ -18,9 +18,11 @@ class Diamond
     
     public function upperSide():array
     {
+        $upperArray = [];
         for ($i=0; $i < $this->depth(); $i++) { 
-            var_dump($this->alphabet()[$i]);
+            array_push($upperArray, $this->alphabet()[$i]);
         }
+        var_dump($upperArray);
         return ['A'];
     }
 
