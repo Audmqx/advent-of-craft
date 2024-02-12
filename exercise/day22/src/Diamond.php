@@ -32,6 +32,12 @@ class Diamond
         return $upperArray;
     }
 
+    public function lowerSide(): array
+    {
+        $reverse = array_reverse($this->upperSide());
+        array_shift($reverse);
+        return $reverse;
+    }
 
     public function addLineToDiamond(string $character): string
     {
