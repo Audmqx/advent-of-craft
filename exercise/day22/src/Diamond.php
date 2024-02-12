@@ -15,12 +15,13 @@ class Diamond
         if($this->initialCharacter === "A"){
             return ['A', '', 'A'];
         }
-        
-        return array_merge($this->upperSide(), $this->lowerSide());
+    
+        $upperSide = $this->upperSide();
+        return array_merge($upperSide, $this->lowerSide($upperSide));
     }
 
     
-    public function upperSide(): array
+    private function upperSide(): array
     {
         $upperArray = [];
 
@@ -28,36 +29,44 @@ class Diamond
         for ($i=1; $i < ( $this->positionInTheAlphabet($this->initialCharacter) + 1 ); $i++) { 
             array_push($upperArray, $this->addLineToDiamond($this->alphabet()[$i]));
         }
-
         return $upperArray;
     }
 
-    public function lowerSide(): array
+    private function lowerSide(array $upperSide): array
     {
-        $reverse = array_reverse($this->upperSide());
+        $reverse = array_reverse($upperSide);
         array_shift($reverse);
         return $reverse;
     }
 
-    public function addLineToDiamond(string $character): string
+    private function addLineToDiamond(string $character): string
     {
-        $blanks = '';
 
-        for ($i=0; $i < $this->positionInTheAlphabet($character); $i++) { 
-            $blanks .= " ";
-        }
-
-        if($this->lineLength === 0)
+        if($this->lineLength != 0)
         {
-            return $character.$blanks.$character;
+            return $character.$this->addBlankSpacesToline($this->lineLength).$character;
         }
-        
+       
+        $blanks = $this->addBlankSpacesToline($this->positionInTheAlphabet($character));
+       
         $this->lineLength = strlen($character.$blanks.$character);
 
-        return $character.$this->lineLength.$character;
+        return $character.$blanks.$character;
     }
 
-    public function positionInTheAlphabet(string $character): int
+    private function addBlankSpacesToline($blanksNumber)
+    {
+     
+        $blanks = '';
+
+        for ($i=0; $i < $blanksNumber; $i++) { 
+            $blanks .= " ";
+        }
+      
+        return $blanks;
+    }
+
+    private function positionInTheAlphabet(string $character): int
     {
         $position = array_search($character, $this->alphabet());
 
