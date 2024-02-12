@@ -28,9 +28,10 @@ class DiamondTest extends TestCase
         $this->forAll(Set\Chars::uppercaseLetter())
         ->then( function($charachterDepth) {
             if($charachterDepth === "A") {
-                $diamond = new Diamond;
-
-                $this->assertSame($diamond->shape('A'), "A");
+                $diamond = new Diamond('A');
+                
+                $depth = 1;
+                $this->assertSame($diamond->depth(), $depth );
             }
         });
     }

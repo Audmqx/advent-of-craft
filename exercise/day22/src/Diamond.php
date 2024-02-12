@@ -4,8 +4,14 @@ Namespace App;
 
 class Diamond
 {
-    public function shape(string $character): string
+
+    public function __construct(private string $shape)
     {
-        return "A";
+        
+    }
+
+    public function depth(): int
+    {
+        return 1;
     }
 }
