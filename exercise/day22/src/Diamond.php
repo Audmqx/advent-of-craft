@@ -25,8 +25,8 @@ class Diamond
         $upperArray = [];
 
         $this->pushACharachter($upperArray);
-
         for ($i=0; $i < $this->positionInTheAlphabet(); $i++) { 
+            var_dump($this->alphabet()[$i]);
             array_push($upperArray, $this->addLineToDiamond($this->alphabet()[$i]));
         }
         
