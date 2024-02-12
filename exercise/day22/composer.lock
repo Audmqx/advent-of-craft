@@ -4,35 +4,94 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea3dd8f8076abdcaa46403da1234972a",
+    "content-hash": "8c32ddde4c2b2321e0ab0b7d37d4ced4",
     "packages": [
         {
-            "name": "innmind/immutable",
-            "version": "4.14.1",
+            "name": "innmind/black-box",
+            "version": "5.6.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Innmind/Immutable.git",
-                "reference": "5b85b794f51d97b5f78b2ee37752b803f4c38347"
+                "url": "https://github.com/Innmind/BlackBox.git",
+                "reference": "f3cea2130a1113a1e91c1be53423087827d45bcd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Innmind/Immutable/zipball/5b85b794f51d97b5f78b2ee37752b803f4c38347",
-                "reference": "5b85b794f51d97b5f78b2ee37752b803f4c38347",
+                "url": "https://api.github.com/repos/Innmind/BlackBox/zipball/f3cea2130a1113a1e91c1be53423087827d45bcd",
+                "reference": "f3cea2130a1113a1e91c1be53423087827d45bcd",
                 "shasum": ""
             },
             "require": {
-                "php": "~8.0"
-            },
-            "conflict": {
-                "innmind/black-box": "<4.4|~5.0"
-            },
-            "provide": {
-                "innmind/black-box-sets": "4.4.0"
+                "innmind/json": "^1.1",
+                "php": "~8.2",
+                "phpunit/php-code-coverage": "^10.1",
+                "phpunit/php-timer": "^6.0",
+                "phpunit/phpunit": "~10.0",
+                "symfony/var-dumper": "~6.0|~7.0"
             },
             "require-dev": {
-                "innmind/black-box": "^4.4",
                 "innmind/coding-standard": "~2.0",
-                "phpunit/phpunit": "~9.0",
+                "ramsey/uuid": "^4.1",
+                "vimeo/psalm": "~5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Runner/functions.php"
+                ],
+                "psr-4": {
+                    "Innmind\\BlackBox\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Baptiste Langlade",
+                    "email": "baptiste.langlade@hey.com"
+                }
+            ],
+            "description": "Test library",
+            "homepage": "http://github.com/Innmind/BlackBox",
+            "keywords": [
+                "fixtures",
+                "property based testing",
+                "test"
+            ],
+            "support": {
+                "issues": "http://github.com/Innmind/BlackBox/issues",
+                "source": "https://github.com/Innmind/BlackBox/tree/5.6.2"
+            },
+            "time": "2024-01-28T14:49:43+00:00"
+        },
+        {
+            "name": "innmind/immutable",
+            "version": "4.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Innmind/Immutable.git",
+                "reference": "16b1fd2cb01a440b240721585abbf5354d5463af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Innmind/Immutable/zipball/16b1fd2cb01a440b240721585abbf5354d5463af",
+                "reference": "16b1fd2cb01a440b240721585abbf5354d5463af",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~8.2"
+            },
+            "conflict": {
+                "innmind/black-box": "<5.0|~6.0"
+            },
+            "provide": {
+                "innmind/black-box-sets": "5.0"
+            },
+            "require-dev": {
+                "innmind/black-box": "~5.0",
+                "innmind/coding-standard": "~2.0",
+                "phpunit/phpunit": "~10.0",
                 "vimeo/psalm": "~5.6"
             },
             "suggest": {
@@ -64,64 +123,59 @@
             ],
             "support": {
                 "issues": "http://github.com/Innmind/Immutable/issues",
-                "source": "https://github.com/Innmind/Immutable/tree/4.14.1"
+                "source": "https://github.com/Innmind/Immutable/tree/4.15.0"
             },
-            "time": "2023-05-18T14:21:24+00:00"
-        }
-    ],
-    "packages-dev": [
+            "time": "2023-07-08T13:38:44+00:00"
+        },
         {
-            "name": "jakub-onderka/php-parallel-lint",
-            "version": "v1.0.0",
+            "name": "innmind/json",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/JakubOnderka/PHP-Parallel-Lint.git",
-                "reference": "04fbd3f5fb1c83f08724aa58a23db90bd9086ee8"
+                "url": "https://github.com/Innmind/Json.git",
+                "reference": "3c06938d57ba32499260609c65e04fe6d391d46b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JakubOnderka/PHP-Parallel-Lint/zipball/04fbd3f5fb1c83f08724aa58a23db90bd9086ee8",
-                "reference": "04fbd3f5fb1c83f08724aa58a23db90bd9086ee8",
+                "url": "https://api.github.com/repos/Innmind/Json/zipball/3c06938d57ba32499260609c65e04fe6d391d46b",
+                "reference": "3c06938d57ba32499260609c65e04fe6d391d46b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "ext-json": "*",
+                "php": "~7.4 || ~8.0"
             },
             "require-dev": {
-                "jakub-onderka/php-console-highlighter": "~0.3",
-                "nette/tester": "~1.3",
-                "squizlabs/php_codesniffer": "~2.7"
+                "innmind/coding-standard": "^1.1",
+                "phpunit/phpunit": "~9.0",
+                "vimeo/psalm": "^4.2"
             },
-            "suggest": {
-                "jakub-onderka/php-console-highlighter": "Highlight syntax in code snippet"
-            },
-            "bin": [
-                "parallel-lint"
-            ],
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "./"
-                ]
+                "psr-4": {
+                    "Innmind\\Json\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-2-Clause"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "Jakub Onderka",
-                    "email": "ahoj@jakubonderka.cz"
+                    "name": "Baptiste Langlade",
+                    "email": "langlade.baptiste@gmail.com"
                 }
             ],
-            "description": "This tool check syntax of PHP files about 20x faster than serial check.",
-            "homepage": "https://github.com/JakubOnderka/PHP-Parallel-Lint",
+            "description": "Type safe json encoder/decoder",
+            "homepage": "http://github.com/Innmind/Json",
+            "keywords": [
+                "json"
+            ],
             "support": {
-                "issues": "https://github.com/JakubOnderka/PHP-Parallel-Lint/issues",
-                "source": "https://github.com/JakubOnderka/PHP-Parallel-Lint/tree/master"
+                "issues": "http://github.com/Innmind/Json/issues",
+                "source": "https://github.com/Innmind/Json/tree/1.3.0"
             },
-            "abandoned": "php-parallel-lint/php-parallel-lint",
-            "time": "2018-02-24T15:31:20+00:00"
+            "time": "2021-01-10T10:53:08+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1689,6 +1743,169 @@
             "time": "2023-02-07T11:34:05+00:00"
         },
         {
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.29.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "9773676c8a1bb1f8d4340a62efe641cf76eda7ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/9773676c8a1bb1f8d4340a62efe641cf76eda7ec",
+                "reference": "9773676c8a1bb1f8d4340a62efe641cf76eda7ec",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "provide": {
+                "ext-mbstring": "*"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.29.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-01-29T20:11:03+00:00"
+        },
+        {
+            "name": "symfony/var-dumper",
+            "version": "v7.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/var-dumper.git",
+                "reference": "a7a061abbf6fe3d4a79032cbc5149a4d65a10234"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/a7a061abbf6fe3d4a79032cbc5149a4d65a10234",
+                "reference": "a7a061abbf6fe3d4a79032cbc5149a4d65a10234",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "conflict": {
+                "symfony/console": "<6.4"
+            },
+            "require-dev": {
+                "ext-iconv": "*",
+                "symfony/console": "^6.4|^7.0",
+                "symfony/http-kernel": "^6.4|^7.0",
+                "symfony/process": "^6.4|^7.0",
+                "symfony/uid": "^6.4|^7.0",
+                "twig/twig": "^3.0.4"
+            },
+            "bin": [
+                "Resources/bin/var-dump-server"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "Resources/functions/dump.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Component\\VarDumper\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides mechanisms for walking through any arbitrary PHP variable",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "debug",
+                "dump"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/var-dumper/tree/v7.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-01-23T15:02:46+00:00"
+        },
+        {
             "name": "theseer/tokenizer",
             "version": "1.2.2",
             "source": {
@@ -1737,6 +1954,61 @@
                 }
             ],
             "time": "2023-11-20T00:12:19+00:00"
+        }
+    ],
+    "packages-dev": [
+        {
+            "name": "jakub-onderka/php-parallel-lint",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JakubOnderka/PHP-Parallel-Lint.git",
+                "reference": "04fbd3f5fb1c83f08724aa58a23db90bd9086ee8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JakubOnderka/PHP-Parallel-Lint/zipball/04fbd3f5fb1c83f08724aa58a23db90bd9086ee8",
+                "reference": "04fbd3f5fb1c83f08724aa58a23db90bd9086ee8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "jakub-onderka/php-console-highlighter": "~0.3",
+                "nette/tester": "~1.3",
+                "squizlabs/php_codesniffer": "~2.7"
+            },
+            "suggest": {
+                "jakub-onderka/php-console-highlighter": "Highlight syntax in code snippet"
+            },
+            "bin": [
+                "parallel-lint"
+            ],
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "./"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Onderka",
+                    "email": "ahoj@jakubonderka.cz"
+                }
+            ],
+            "description": "This tool check syntax of PHP files about 20x faster than serial check.",
+            "homepage": "https://github.com/JakubOnderka/PHP-Parallel-Lint",
+            "support": {
+                "issues": "https://github.com/JakubOnderka/PHP-Parallel-Lint/issues",
+                "source": "https://github.com/JakubOnderka/PHP-Parallel-Lint/tree/master"
+            },
+            "abandoned": "php-parallel-lint/php-parallel-lint",
+            "time": "2018-02-24T15:31:20+00:00"
         }
     ],
     "aliases": [],
