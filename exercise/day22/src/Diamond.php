@@ -13,7 +13,7 @@ class Diamond
     public function shape()
     {
         var_dump($this->upperSide());
-        return "AA";
+        return $this->upperSide()[0];
     }
 
     
