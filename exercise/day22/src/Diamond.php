@@ -4,10 +4,10 @@ Namespace App;
 
 class Diamond
 {
+    private $lineLength = 0;
 
     public function __construct(private string $initialCharacter)
     {
-        
     }
 
     public function shape()
@@ -47,7 +47,14 @@ class Diamond
             $blanks .= " ";
         }
 
-        return $character.$blanks.$character;
+        if($this->lineLength === 0)
+        {
+            return $character.$blanks.$character;
+        }
+        
+        $this->lineLength = strlen($character.$blanks.$character);
+
+        return $character.$this->lineLength.$character;
     }
 
     public function positionInTheAlphabet(string $character): int
