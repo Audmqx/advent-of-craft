@@ -36,7 +36,7 @@ class Diamond
         for ($i=0; $i < $this->spacesBetweenChars(); $i++) { 
             $blanks .= " ";
         }
-    
+        var_dump($character.$blanks.$character);
         return $character.$blanks.$character;
     }
 
