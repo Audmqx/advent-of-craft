@@ -19,6 +19,7 @@ class Diamond
     public function upperSide():array
     {
         $upperArray = [];
+        var_dump('HEYYY');
         for ($i=0; $i < $this->depth(); $i++) { 
             var_dump($i);
             array_push($upperArray, $this->alphabet()[$i]);
@@ -32,7 +33,7 @@ class Diamond
     public function addLineToDiamond(string $character): string
     {
         $blanks = '';
-        
+
         for ($i=0; $i < $this->spacesBetweenChars(); $i++) { 
             $blanks .= " ";
         }
