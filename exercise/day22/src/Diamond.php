@@ -16,7 +16,7 @@ class Diamond
             return ['A', '', 'A'];
         }
         
-        return $this->upperSide();
+        return array_merge($this->upperSide(), $this->lowerSide());
     }
 
     
