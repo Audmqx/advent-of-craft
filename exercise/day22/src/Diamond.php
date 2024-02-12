@@ -22,7 +22,7 @@ class Diamond
         $upperArray = [];
         for ($i=0; $i < $this->depth(); $i++) { 
             var_dump(666666);
-            array_push($upperArray, $this->alphabet()[$i]);
+            array_push($upperArray, $this->addLineToDiamond($this->alphabet()[$i]));
         }
         var_dump($upperArray);
         return $upperArray;
@@ -37,7 +37,7 @@ class Diamond
         for ($i=0; $i < $this->spacesBetweenChars(); $i++) { 
             $blanks .= " ";
         }
-        var_dump(7777);
+      
         return $character.$blanks.$character;
     }
 
@@ -46,7 +46,7 @@ class Diamond
         return $this->alphabet()[$this->initialCharacter] + 1; // additional is because array starts at 0
     }
 
-    public function spacesBetweenChars(): int
+    public function spacesBetweenChars()
     {
         return $this->alphabet()[$this->initialCharacter];
     }
