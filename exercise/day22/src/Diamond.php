@@ -16,7 +16,7 @@ class Diamond
             return ['A', '', 'A'];
         }
         
-        return $this->upperSide()[0];
+        return $this->upperSide();
     }
 
     
