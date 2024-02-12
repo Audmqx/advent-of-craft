@@ -16,6 +16,7 @@ use Fixtures\Innmind\Immutable\Set as ImmutableSet;
 //   A
 //  B B
 // C   C
+//D     D
 //  B B
 //   A
     
