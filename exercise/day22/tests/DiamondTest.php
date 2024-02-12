@@ -26,8 +26,8 @@ class DiamondTest extends TestCase
     public function test_proprety_based()
     {
         $this->forAll(Set\Chars::uppercaseLetter())
-        ->then( function($charachterDepth) {
-            if($charachterDepth === "A") {
+        ->then( function($characterDepth) {
+            if($characterDepth === "A") {
                 $diamond = new Diamond('A');
                 
                 $depth = 1;
