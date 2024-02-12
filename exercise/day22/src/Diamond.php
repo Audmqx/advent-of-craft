@@ -30,14 +30,12 @@ class Diamond
 
     public function addLineToDiamond(string $character): string
     {
-        $line = $character;
-        $blank = '';
-
+        $blanks = '';
         for ($i=0; $i < $this->spacesBetweenChars(); $i++) { 
             $blanks .= " ";
         }
     
-        return $upperArray;
+        return $character.$blanks.$character;
     }
 
     public function depth(): int
