@@ -12,7 +12,6 @@ class Diamond
 
     public function shape():array
     {
-       
         return ['A','','A'];
     }
 
