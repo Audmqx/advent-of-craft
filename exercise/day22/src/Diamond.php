@@ -25,7 +25,7 @@ class Diamond
         $upperArray = [];
 
         array_push($upperArray, 'A');
-        for ($i=1; $i < ( $this->positionInTheAlphabet() + 1 ); $i++) { 
+        for ($i=1; $i < ( $this->positionInTheAlphabet($this->initialCharacter) + 1 ); $i++) { 
             array_push($upperArray, $this->addLineToDiamond($this->alphabet()[$i]));
         }
 
@@ -43,16 +43,16 @@ class Diamond
     {
         $blanks = '';
 
-        for ($i=0; $i < $this->positionInTheAlphabet(); $i++) { 
+        for ($i=0; $i < $this->positionInTheAlphabet($character); $i++) { 
             $blanks .= " ";
         }
-      
+
         return $character.$blanks.$character;
     }
 
-    public function positionInTheAlphabet(): int
+    public function positionInTheAlphabet(string $character): int
     {
-        $position = array_search($this->initialCharacter, $this->alphabet());
+        $position = array_search($character, $this->alphabet());
 
         if ($position !== false) {
            return $position; 
