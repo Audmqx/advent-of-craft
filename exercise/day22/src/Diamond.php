@@ -46,6 +46,7 @@ class Diamond
     public function depth(): int
     {
         var_dump($this->initialCharacter);
+        var_dump($this->alphabet());
         return $this->alphabet()[$this->initialCharacter] + 1; // additional is because array starts at 0
     }
 
