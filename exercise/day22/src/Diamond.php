@@ -10,6 +10,11 @@ class Diamond
         
     }
 
+    public function shape():array
+    {
+        return ['A','','A'];
+    }
+
     public function depth(): int
     {
         return 1;
