@@ -21,6 +21,7 @@ class Diamond
     {
         $upperArray = [];
         for ($i=0; $i < $this->depth(); $i++) { 
+            var_dump(666666);
             array_push($upperArray, $this->alphabet()[$i]);
         }
         
@@ -36,7 +37,7 @@ class Diamond
         for ($i=0; $i < $this->spacesBetweenChars(); $i++) { 
             $blanks .= " ";
         }
-        var_dump($character.$blanks.$character);
+        
         return $character.$blanks.$character;
     }
 
