@@ -3,6 +3,8 @@
 namespace Test;
 
 use PHPUnit\Framework\TestCase;
+use App\Diamond;
+
 
 
 // The program will take a parameter a letter indicating the depth of the diamond.
