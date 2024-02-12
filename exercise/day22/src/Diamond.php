@@ -23,7 +23,7 @@ class Diamond
     public function upperSide(): array
     {
         $upperArray = [];
-        for ($i=0; $i < $this->positionInTheAlphabet(); $i++) { 
+        for ($i=0; $i < ($this->positionInTheAlphabet() + 1); $i++) { 
             array_push($upperArray, $this->addLineToDiamond($this->alphabet()[$i]));
         }
    
@@ -54,7 +54,7 @@ class Diamond
 
     public function spacesBetweenChars()
     {
-        return $this->alphabet()[$this->initialCharacter];
+        return $this->positionInTheAlphabet();
     }
 
     private function alphabet(): array
