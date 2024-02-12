@@ -32,10 +32,6 @@ class Diamond
     public function addLineToDiamond(string $character): string
     {
         $blanks = '';
-
-        var_dump(666);
-        var_dump($character);
-        var_dump($this->spacesBetweenChars());
         
         for ($i=0; $i < $this->spacesBetweenChars(); $i++) { 
             $blanks .= " ";
