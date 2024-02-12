@@ -30,11 +30,9 @@ class DiamondTest extends TestCase
             if($characterDepth === "A") {
                 $diamond = new Diamond('A');
                 
-                $expectedLine = "AA";
+                $expectedShape = ['A', '', 'A'];
         
-                $this->assertSame($diamond->shape(), $expectedLine);
-
-                // $this->assertSame($diamond->addLineToDiamond('A'), "AA");
+                $this->assertSame($diamond->shape(), $expectedShape);
             }
         });
     }

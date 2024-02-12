@@ -12,6 +12,10 @@ class Diamond
 
     public function shape()
     {
+        if($this->initialCharacter === "A"){
+            return ['A', '', 'A'];
+        }
+        
         return $this->upperSide()[0];
     }
 
