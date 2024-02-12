@@ -44,7 +44,9 @@ class Diamond
 
         if($this->lineLength != 0)
         {
-            return $character.$this->addBlankSpacesToline($this->lineLength).$character;
+            $blanks = $this->addBlankSpacesToline($this->lineLength);
+            $this->lineLength = strlen($character.$blanks.$character);
+            return $character.$blanks.$character;
         }
        
         $blanks = $this->addBlankSpacesToline($this->positionInTheAlphabet($character));

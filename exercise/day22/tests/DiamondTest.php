@@ -48,6 +48,13 @@ class DiamondTest extends TestCase
                 $expectedShape = ['A', 'B B','C   C','B B', 'A'];
                 $this->assertSame($expectedShape, $diamond->shape());
             }
+
+            if ($characterDepth === "D") {
+                $diamond = new Diamond('D');
+                
+                $expectedShape = ['A', 'B B','C   C','D     D','C   C','B B', 'A'];
+                $this->assertSame($expectedShape, $diamond->shape());
+            }
         });
     }
 }
