@@ -12,12 +12,11 @@ class Diamond
 
     public function shape()
     {
-        var_dump($this->upperSide());
         return $this->upperSide()[0];
     }
 
     
-    public function upperSide():array
+    public function upperSide(): array
     {
         $upperArray = [];
         for ($i=0; $i < $this->depth(); $i++) { 
