@@ -12,11 +12,16 @@ use PHPUnit\Framework\TestCase;
 // C   C
 //  B B
 //   A
-
+    
 class DiamondTest extends TestCase
 {
-    public function test()
+    public function test_that_diamond_is_one_depth()
     {
-        $this->assertTrue(true);
+        //ARRANGE
+        $diamond = new Diamond;
+        //ACT
+
+        //ASSERT
+        $this->assertSame($diamond->shape('A'), "A");
     }
 }

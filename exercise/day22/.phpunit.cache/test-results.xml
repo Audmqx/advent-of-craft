@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="CLI Arguments" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.005302">
-    <testsuite name="Test\DiamondTest" file="C:\laragon\www\advent-of-craft\exercise\day22\tests\DiamondTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.005302">
-      <testcase name="test" file="C:\laragon\www\advent-of-craft\exercise\day22\tests\DiamondTest.php" line="18" class="Test\DiamondTest" classname="Test.DiamondTest" assertions="1" time="0.005302"/>
+  <testsuite name="CLI Arguments" tests="1" assertions="0" errors="1" failures="0" skipped="0" time="0.844494">
+    <testsuite name="Test\DiamondTest" file="C:\laragon\www\advent-of-craft\exercise\day22\tests\DiamondTest.php" tests="1" assertions="0" errors="1" failures="0" skipped="0" time="0.844494">
+      <testcase name="test_that_diamond_is_one_depth" file="C:\laragon\www\advent-of-craft\exercise\day22\tests\DiamondTest.php" line="18" class="Test\DiamondTest" classname="Test.DiamondTest" assertions="0" time="0.844494">
+        <error type="Error">Test\DiamondTest::test_that_diamond_is_one_depth&#13;
+Error: Class "Test\Diamond" not found
+&#13;
+C:\laragon\www\advent-of-craft\exercise\day22\tests\DiamondTest.php:21</error>
+      </testcase>
     </testsuite>
   </testsuite>
 </testsuites>
