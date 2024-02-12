@@ -31,7 +31,9 @@ class DiamondTest extends TestCase
                 $diamond = new Diamond('A');
                 
                 $depth = 1;
-                $this->assertSame($diamond->depth(), $depth );
+                $expectedShape = ['A','','A'];
+                $this->assertSame($diamond->depth(), $depth);
+                $this->assertSame(['A','','A'], $expectedShape);
             }
         });
     }
