@@ -24,20 +24,20 @@ class Diamond
     {
         $upperArray = [];
 
-        $upperArray = $this->pushACharachter($upperArray);
+        $this->pushACharachter($upperArray);
 
         for ($i=0; $i < $this->positionInTheAlphabet(); $i++) { 
             array_push($upperArray, $this->addLineToDiamond($this->alphabet()[$i]));
         }
         
-        $upperArray = $this->pushACharachter($upperArray);
+        $this->pushACharachter($upperArray);
 
         return $upperArray;
     }
 
-    private function pushACharachter(array $array): array
+    private function pushACharachter(array $array)
     {
-        return array_push($array, 'A');
+        array_push($array, 'A');
     }
 
     public function addLineToDiamond(string $character): string
