@@ -24,7 +24,7 @@ class Diamond
             var_dump(666666);
             array_push($upperArray, $this->alphabet()[$i]);
         }
-        
+        var_dump($upperArray);
         return $upperArray;
     }
 
