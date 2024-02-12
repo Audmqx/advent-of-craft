@@ -18,7 +18,6 @@ class Diamond
     public function depth(): int
     {
         $alphabet = range('A', 'Z');
-        var_dump($alphabet[$this->shape] + 1);
-        return 1;
+        return $alphabet[$this->shape] + 1; // additional is because array starts at 0
     }
 }
