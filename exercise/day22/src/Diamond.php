@@ -22,7 +22,7 @@ class Diamond
         for ($i=0; $i < $this->depth(); $i++) { 
             array_push($upperArray, $this->alphabet()[$i]);
         }
-    
+        
         return $upperArray;
     }
 
