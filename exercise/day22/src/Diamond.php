@@ -26,6 +26,20 @@ class Diamond
         return $upperArray;
     }
 
+
+
+    public function addLineToDiamond(string $character): string
+    {
+        $line = $character;
+        $blank = '';
+
+        for ($i=0; $i < $this->spacesBetweenChars(); $i++) { 
+            $blanks .= " ";
+        }
+    
+        return $upperArray;
+    }
+
     public function depth(): int
     {
         return $this->alphabet()[$this->shape] + 1; // additional is because array starts at 0
