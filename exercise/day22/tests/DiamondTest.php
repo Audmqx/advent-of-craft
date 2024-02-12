@@ -4,6 +4,7 @@ namespace Test;
 
 use PHPUnit\Framework\TestCase;
 use App\Diamond;
+use Fixtures\Innmind\Immutable;
 
 
 
