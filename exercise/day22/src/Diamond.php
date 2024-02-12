@@ -15,6 +15,12 @@ class Diamond
         return ['A','','A'];
     }
 
+    
+    public function upperSide():array
+    {
+        return ['A'];
+    }
+
     public function depth(): int
     {
         return $this->alphabet()[$this->shape] + 1; // additional is because array starts at 0
