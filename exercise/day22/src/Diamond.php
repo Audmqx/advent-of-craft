@@ -21,10 +21,9 @@ class Diamond
     {
         $upperArray = [];
         for ($i=0; $i < $this->depth(); $i++) { 
-            var_dump(666666);
             array_push($upperArray, $this->addLineToDiamond($this->alphabet()[$i]));
         }
-        var_dump($upperArray);
+   
         return $upperArray;
     }
 
