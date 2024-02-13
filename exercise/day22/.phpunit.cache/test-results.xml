@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="CLI Arguments" tests="1" assertions="14" errors="0" failures="0" skipped="0" time="0.017305">
-    <testsuite name="Test\DiamondTest" file="C:\laragon\www\advent-of-craft\exercise\day22\tests\DiamondTest.php" tests="1" assertions="14" errors="0" failures="0" skipped="0" time="0.017305">
-      <testcase name="test_proprety_based" file="C:\laragon\www\advent-of-craft\exercise\day22\tests\DiamondTest.php" line="27" class="Test\DiamondTest" classname="Test.DiamondTest" assertions="14" time="0.017305"/>
+  <testsuite name="CLI Arguments" tests="1" assertions="100" errors="0" failures="0" skipped="0" time="0.031205">
+    <testsuite name="Test\DiamondTest" file="C:\laragon\www\advent-of-craft\exercise\day22\tests\DiamondTest.php" tests="1" assertions="100" errors="0" failures="0" skipped="0" time="0.031205">
+      <testcase name="test_proprety_based" file="C:\laragon\www\advent-of-craft\exercise\day22\tests\DiamondTest.php" line="27" class="Test\DiamondTest" classname="Test.DiamondTest" assertions="100" time="0.031205"/>
     </testsuite>
   </testsuite>
 </testsuites>

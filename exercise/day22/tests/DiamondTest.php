@@ -27,34 +27,36 @@ class DiamondTest extends TestCase
     public function test_proprety_based()
     {
         $this->forAll(Set\Chars::uppercaseLetter())
-        ->then( function($characterDepth) {
-            if($characterDepth === "A") {
-                $diamond = new Diamond('A');
-                
-                $expectedShape = ['A', '', 'A'];
-                $this->assertSame($diamond->shape(), $expectedShape);
-            } 
-            
-            if ($characterDepth === "B") {
-                $diamond = new Diamond('B');
-                
-                $expectedShape = ['A', 'B B', 'A'];
-                $this->assertSame($expectedShape, $diamond->shape());
-            }
+        ->then( function($character) {
 
-            if ($characterDepth === "C") {
-                $diamond = new Diamond('C');
-                
-                $expectedShape = ['A', 'B B','C   C','B B', 'A'];
-                $this->assertSame($expectedShape, $diamond->shape());
-            }
+        $expectedDiamondShape = $this->generateDiamondShape($character);
+        $diamond = new Diamond($character);
+        $this->assertSame($expectedDiamondShape, $diamond->shape());
 
-            if ($characterDepth === "D") {
-                $diamond = new Diamond('D');
-                
-                $expectedShape = ['A', 'B B','C   C','D     D','C   C','B B', 'A'];
-                $this->assertSame($expectedShape, $diamond->shape());
-            }
         });
+    }
+
+    public function generateDiamondShape($letter) {
+        $alphabet = range('A', 'Z');
+        $indexEnd = array_search($letter, $alphabet);
+        $lines = [];
+    
+        for ($i = 0; $i <= $indexEnd; $i++) {
+            if ($i == 0) {
+                $line = 'A';
+            } else {
+                $spacesInside = str_repeat(' ', max(0, $i * 2 - 1));
+                $line = $alphabet[$i] . $spacesInside . $alphabet[$i];
+            }
+            $lines[] = $line;
+        }
+    
+        for ($i = $indexEnd - 1; $i >= 0; $i--) {
+            $spacesInside = str_repeat(' ', max(0, $i * 2 - 1));
+            $line = $i == 0 ? 'A' : $alphabet[$i] . $spacesInside . $alphabet[$i];
+            $lines[] = $line;
+        }
+    
+        return $lines;
     }
 }
